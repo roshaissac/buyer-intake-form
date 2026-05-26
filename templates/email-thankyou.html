@@ -1,0 +1,118 @@
+<!--
+  EmailJS Email Template — buyer_thankyou
+  ========================================
+  Paste this HTML into your EmailJS template body (HTML mode).
+  Subject line: Welcome to the Journey, {{to_name}} — Your Calgary Home Search Starts Now 🏡
+
+  Template variables used:
+    {{to_name}}       — buyer's first name
+    {{to_email}}      — buyer's email (set as "To" in EmailJS)
+    {{phone}}         — buyer's phone
+    {{property_type}} — comma-separated property types
+    {{budget}}        — budget range selected
+    {{timeline}}      — move-in timeframe
+    {{neighbourhoods}}— preferred neighbourhoods
+    {{preapproval}}   — pre-approval status
+    {{next_steps}}    — agreed next steps (agent mode) or default copy
+    {{agent_name}}    — Rosh
+    {{agent_email}}   — rosh@issacrealty.com
+    {{agent_phone}}   — agent phone number
+-->
+
+<div style="font-family: 'Segoe UI', Helvetica Neue, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #FFF4EC;">
+
+  <!-- Header -->
+  <div style="background: #1A1A1A; padding: 28px 32px; text-align: center;">
+    <p style="color: #E8630A; font-size: 13px; letter-spacing: 2px; margin: 0; text-transform: uppercase; font-weight: 700;">Issac Realty Team</p>
+    <p style="color: #888; font-size: 11px; margin: 4px 0 0;">Associates of Dreamhouse Realty Ltd., Calgary</p>
+  </div>
+
+  <!-- Body -->
+  <div style="padding: 36px 32px;">
+    <h2 style="color: #1A1A1A; margin-top: 0; font-size: 22px;">Hi {{to_name}},</h2>
+    <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px;">
+      Thank you for taking the time to complete your Buyer Intake. I've got everything I need to start working for you,
+      and I'm genuinely excited to help you find the right home in Calgary.
+    </p>
+    <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px;">
+      Here's a quick summary of what you shared with me:
+    </p>
+
+    <!-- Summary table -->
+    <table style="width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px;">
+      <tr style="background: #F0F0F0;">
+        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; width: 40%;">Property Type</td>
+        <td style="padding: 10px 14px; color: #1A1A1A;">{{property_type}}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Budget</td>
+        <td style="padding: 10px 14px; color: #1A1A1A;">{{budget}}</td>
+      </tr>
+      <tr style="background: #F0F0F0;">
+        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Move-In Timeline</td>
+        <td style="padding: 10px 14px; color: #1A1A1A;">{{timeline}}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Neighbourhoods</td>
+        <td style="padding: 10px 14px; color: #1A1A1A;">{{neighbourhoods}}</td>
+      </tr>
+      <tr style="background: #F0F0F0;">
+        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Pre-Approval</td>
+        <td style="padding: 10px 14px; color: #1A1A1A;">{{preapproval}}</td>
+      </tr>
+    </table>
+
+    <!-- CRG Brief -->
+    <div style="background: #1A1A1A; border-left: 4px solid #E8630A; padding: 22px 26px; margin: 28px 0; border-radius: 4px;">
+      <p style="color: #E8630A; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 12px; font-weight: 700;">
+        📋 Your Consumer Relationship Guide — Plain English Version
+      </p>
+      <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0 0 14px;">
+        As a buyer, you have the right to know exactly how I work and who I represent.
+        The <strong style="color: #E8630A;">Consumer Relationship Guide (CRG)</strong> is an Alberta RECA requirement —
+        it's not a contract, it just explains your options.
+      </p>
+      <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0 0 14px;">
+        You can work with me as a <em>client</em> — where I represent your interests exclusively and have full
+        fiduciary duties (loyalty, confidentiality, best-price negotiation) — or as a <em>customer</em>, where
+        I assist but don't formally represent you.
+      </p>
+      <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0;">
+        My recommendation: let's work as <strong style="color: #E8630A;">agent and client</strong>.
+        That way I'm fully in your corner — negotiating, advising, and advocating for you at every step.
+        <strong style="color: #E8630A;">No extra cost to you</strong> — the seller pays my commission.
+      </p>
+    </div>
+
+    <!-- Next Steps -->
+    <h3 style="color: #E8630A; font-size: 17px; margin-bottom: 10px;">What Happens Next</h3>
+    <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px;">{{next_steps}}</p>
+
+    <!-- CTA Button -->
+    <div style="text-align: center; margin: 36px 0 28px;">
+      <a href="mailto:{{agent_email}}?subject=Re%3A%20My%20Calgary%20Home%20Search&body=Hi%20{{agent_name}}%2C%0A%0A"
+         style="background: #E8630A; color: #fff; padding: 15px 36px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; letter-spacing: 0.02em;">
+        Reply to {{agent_name}} Directly
+      </a>
+    </div>
+
+    <!-- Sign-off -->
+    <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px; border-top: 1px solid #F0F0F0; padding-top: 24px;">
+      Talk soon,<br>
+      <strong>{{agent_name}}</strong><br>
+      <span style="color: #888; font-size: 13px;">
+        Issac Realty Team · Dreamhouse Realty Ltd., Calgary<br>
+        📧 {{agent_email}} &nbsp;·&nbsp; 📱 {{agent_phone}}
+      </span>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <div style="background: #F0F0F0; padding: 16px 32px; text-align: center; border-top: 1px solid #E0E0E0;">
+    <p style="color: #888; font-size: 11px; margin: 0; line-height: 1.6;">
+      Issac Realty Team · Associates of Dreamhouse Realty Ltd. · Calgary, AB<br>
+      This email was sent because you completed a Buyer Intake form at issacrealty.com
+    </p>
+  </div>
+
+</div>

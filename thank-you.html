@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're All Set — Issac Realty Team</title>
+  <meta name="robots" content="noindex">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Welcome to Your Calgary Home Search — Issac Realty Team">
+  <meta property="og:description" content="Your Buyer Intake is complete. Rosh will be in touch within 24 hours.">
+  <meta property="og:image"       content="assets/og-card.png">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: var(--black);">
+
+  <div class="thankyou-page">
+
+    <!-- Header strip -->
+    <div style="text-align:center; margin-bottom:32px;">
+      <p style="color:var(--orange); font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin:0;">
+        Issac Realty Team
+      </p>
+      <p style="color:var(--mid-grey); font-size:11px; margin:4px 0 0;">
+        Associates of Dreamhouse Realty Ltd., Calgary
+      </p>
+    </div>
+
+    <div class="thankyou-card">
+      <div class="thankyou-icon">🏡</div>
+
+      <h1>You're All Set, <span id="client-name">there</span>!</h1>
+
+      <p>
+        Your Buyer Intake is complete. I've sent your personalized <strong>Welcome Package</strong>
+        — including a plain-English Consumer Relationship Guide — to your inbox.
+        Check your spam folder if it doesn't arrive within a few minutes.
+      </p>
+
+      <ul class="thankyou-highlights">
+        <li>Your Welcome Package + CRG has been emailed to you</li>
+        <li>Rosh will follow up within 24 hours</li>
+        <li>Your preferences have been saved to your profile</li>
+        <li>No obligation — just a conversation</li>
+      </ul>
+
+      <p style="color:var(--mid-grey); font-size:14px;">
+        Have an urgent question? Don't wait — reach out directly.
+      </p>
+
+      <a class="btn-reply"
+         href="mailto:rosh@issacrealty.com?subject=Re%3A%20My%20Calgary%20Home%20Search&body=Hi%20Rosh%2C%0A%0A">
+        Email Rosh Directly
+      </a>
+    </div>
+
+    <div class="thankyou-footer">
+      <p style="color:var(--mid-grey);">
+        Issac Realty Team &middot; Associates of Dreamhouse Realty Ltd. &middot; Calgary, AB<br>
+        <a href="mailto:rosh@issacrealty.com" style="color:var(--orange);">rosh@issacrealty.com</a>
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    // Personalise with name from URL param
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    if (name) {
+      document.getElementById('client-name').textContent = decodeURIComponent(name);
+    }
+  </script>
+
+</body>
+</html>

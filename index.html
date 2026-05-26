@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Intake Form — Issac Realty Team</title>
+  <meta name="description" content="Complete your Buyer Intake in 5 minutes and get your personalized Welcome Package from Rosh at Issac Realty.">
+
+  <!-- Open Graph (looks great when shared via WhatsApp / social) -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Start Your Calgary Home Search — Issac Realty Team">
+  <meta property="og:description" content="Complete your Buyer Intake in 5 minutes. Get your personalized Welcome Package plus a plain-English Consumer Relationship Guide from Rosh.">
+  <meta property="og:image"       content="assets/og-card.png">
+  <meta property="og:site_name"   content="Issac Realty Team">
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Site Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Issac Realty Team" class="logo" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <span class="brand-name">Issac Realty Team</span>
+          <span class="brand-sub">Associates of Dreamhouse Realty Ltd., Calgary</span>
+        </div>
+      </div>
+      <div id="agent-badge" class="agent-badge" style="display:none;">&#128274; Agent Mode</div>
+    </div>
+  </header>
+
+  <!-- ===== Mode Toggle ===== -->
+  <div class="mode-toggle-bar">
+    <div class="mode-toggle-inner">
+      <span class="mode-toggle-label">Mode:</span>
+      <button class="mode-btn active" data-mode="client">&#127968; Client Self-Serve</button>
+      <button class="mode-btn"        data-mode="agent">&#129309; Agent-Guided Session</button>
+    </div>
+  </div>
+
+  <!-- ===== Progress Bar ===== -->
+  <div class="progress-wrapper">
+    <div class="progress-inner">
+      <div class="progress-steps">
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="progress-step active" data-step="1">
+          <div class="step-dot">1</div>
+          <span class="step-label">About You</span>
+        </div>
+        <div class="progress-step" data-step="2">
+          <div class="step-dot">2</div>
+          <span class="step-label">Goals</span>
+        </div>
+        <div class="progress-step" data-step="3">
+          <div class="step-dot">3</div>
+          <span class="step-label">Timeline</span>
+        </div>
+        <div class="progress-step" data-step="4">
+          <div class="step-dot">4</div>
+          <span class="step-label">Situation</span>
+        </div>
+        <div class="progress-step" data-step="5" style="display:none;">
+          <div class="step-dot">5</div>
+          <span class="step-label">Notes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Main Form ===== -->
+  <main class="form-container">
+
+    <!-- Intro copy (switches with mode) -->
+    <div class="form-intro">
+      <div id="intro-client">
+        <h1>Let's Find Your Perfect Calgary Home &#127968;</h1>
+        <p>This takes about 5 minutes. When you're done, you'll receive a personalized welcome package
+           — including your Consumer Relationship Guide — straight to your inbox.</p>
+      </div>
+      <div id="intro-agent" style="display:none;">
+        <h1>Buyer Intake — Agent Session</h1>
+        <p>Complete this form alongside your client. Agent Notes (Section 5) are internal only and will not appear in the client's welcome email.</p>
+      </div>
+    </div>
+
+    <div id="email-warning" class="email-warning">
+      &#9888; We couldn't send your welcome email automatically — Rosh will follow up with your package manually within a few hours.
+    </div>
+
+    <form id="intake-form" novalidate>
+
+      <!-- ================================================
+           SECTION 1 — About You
+           ================================================ -->
+      <section class="form-section active" id="section-1" data-section="1">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-number">Section 1 of 4</div>
+            <h2>About You</h2>
+            <p>So we can reach you and keep things personal.</p>
+          </div>
+
+          <div class="field-grid">
+
+            <div class="field-group">
+              <label class="field-label" for="full-name">
+                Full Name <span class="required-mark">*</span>
+              </label>
+              <input class="field-input" type="text" id="full-name" name="full_name"
+                     placeholder="Jane Smith" autocomplete="name">
+              <span class="field-error" id="err-full-name"></span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="email">
+                Email Address <span class="required-mark">*</span>
+              </label>
+              <input class="field-input" type="email" id="email" name="email"
+                     placeholder="jane@example.com" autocomplete="email">
+              <span class="field-error" id="err-email"></span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="phone">
+                Mobile / WhatsApp Number <span class="required-mark">*</span>
+              </label>
+              <input class="field-input" type="tel" id="phone" name="phone"
+                     placeholder="403-555-0123" autocomplete="tel">
+              <span class="field-error" id="err-phone"></span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Preferred Contact Method</label>
+              <div class="radio-group">
+                <label class="radio-item">
+                  <input type="radio" name="contact-method" value="Call">
+                  <span class="radio-label">&#128222; Call</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="contact-method" value="Text">
+                  <span class="radio-label">&#128172; Text</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="contact-method" value="WhatsApp">
+                  <span class="radio-label">&#128241; WhatsApp</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="contact-method" value="Email">
+                  <span class="radio-label">&#128140; Email</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="referral-source">How Did You Hear About Us?</label>
+              <select class="field-input" id="referral-source" name="referral_source">
+                <option value="">Select one…</option>
+                <option>Referral</option>
+                <option>Social Media</option>
+                <option>Google</option>
+                <option>Roomvu</option>
+                <option>Open House</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+          </div><!-- /field-grid -->
+
+          <div class="section-nav">
+            <button type="button" class="btn-next">Next: Your Goals &rarr;</button>
+          </div>
+        </div><!-- /section-card -->
+      </section>
+
+
+      <!-- ================================================
+           SECTION 2 — Buying Goals
+           ================================================ -->
+      <section class="form-section" id="section-2" data-section="2">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-number">Section 2 of 4</div>
+            <h2>Your Buying Goals</h2>
+            <p>Help us narrow down what you're looking for.</p>
+          </div>
+
+          <div class="field-grid">
+
+            <div class="field-group full-width">
+              <label class="field-label">
+                Property Type <span class="required-mark">*</span>
+                <span style="font-weight:400;color:var(--mid-grey);"> (select all that apply)</span>
+              </label>
+              <div class="checkbox-group" id="property-type-group">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="property-type" value="Detached">
+                  <span class="checkbox-label">Detached</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="property-type" value="Semi-Detached">
+                  <span class="checkbox-label">Semi-Detached</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="property-type" value="Townhouse">
+                  <span class="checkbox-label">Townhouse</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="property-type" value="Condo">
+                  <span class="checkbox-label">Condo</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="property-type" value="Duplex">
+                  <span class="checkbox-label">Duplex</span>
+                </label>
+              </div>
+              <span class="field-error" id="err-property-type-group"></span>
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label" for="neighbourhoods">
+                Preferred Neighbourhoods <span style="font-weight:400;color:var(--mid-grey);">(top 3, comma-separated)</span>
+              </label>
+              <input class="field-input" type="text" id="neighbourhoods" name="neighbourhoods"
+                     placeholder="e.g. Mahogany, Auburn Bay, Legacy">
+            </div>
+
+            <div class="field-grid two-col full-width" style="margin-top:0;">
+              <div class="field-group">
+                <label class="field-label" for="must-have">Must-Have Features</label>
+                <textarea class="field-input" id="must-have" name="must_have"
+                          placeholder="e.g. Main-floor laundry, south-facing yard, open concept…"></textarea>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="deal-breakers">Deal-Breakers</label>
+                <textarea class="field-input" id="deal-breakers" name="deal_breakers"
+                          placeholder="e.g. No condos above 4th floor, must have parking…"></textarea>
+              </div>
+            </div>
+
+            <div class="field-grid two-col full-width" style="margin-top:0;">
+              <div class="field-group">
+                <label class="field-label" for="min-bedrooms">Minimum Bedrooms</label>
+                <select class="field-input" id="min-bedrooms" name="min_bedrooms">
+                  <option value="">Any</option>
+                  <option>1</option><option>2</option><option>3</option>
+                  <option>4</option><option>5+</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="min-bathrooms">Minimum Bathrooms</label>
+                <select class="field-input" id="min-bathrooms" name="min_bathrooms">
+                  <option value="">Any</option>
+                  <option>1</option><option>1.5</option><option>2</option>
+                  <option>2.5</option><option>3+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Basement Suite Needed?</label>
+              <div class="radio-group">
+                <label class="radio-item">
+                  <input type="radio" name="basement-suite" value="Yes">
+                  <span class="radio-label">Yes</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="basement-suite" value="No">
+                  <span class="radio-label">No</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="basement-suite" value="Nice to have">
+                  <span class="radio-label">Nice to have</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Garage Required?</label>
+              <div class="radio-group">
+                <label class="radio-item">
+                  <input type="radio" name="garage" value="Yes">
+                  <span class="radio-label">Yes</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="garage" value="No">
+                  <span class="radio-label">No</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="garage" value="Nice to have">
+                  <span class="radio-label">Nice to have</span>
+                </label>
+              </div>
+            </div>
+
+          </div><!-- /field-grid -->
+
+          <div class="section-nav has-back">
+            <button type="button" class="btn-back">&larr; Back</button>
+            <button type="button" class="btn-next">Next: Timeline &amp; Budget &rarr;</button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================
+           SECTION 3 — Timeline & Budget
+           ================================================ -->
+      <section class="form-section" id="section-3" data-section="3">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-number">Section 3 of 4</div>
+            <h2>Your Timeline &amp; Budget</h2>
+            <p>These numbers help me find homes that actually work for you.</p>
+          </div>
+
+          <div class="field-grid two-col">
+
+            <div class="field-group">
+              <label class="field-label" for="timeline">
+                Target Move-In Timeframe <span class="required-mark">*</span>
+              </label>
+              <select class="field-input" id="timeline" name="timeline">
+                <option value="">Select one…</option>
+                <option>ASAP</option>
+                <option>1–3 months</option>
+                <option>3–6 months</option>
+                <option>6–12 months</option>
+                <option>Just exploring</option>
+              </select>
+              <span class="field-error" id="err-timeline"></span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="budget">
+                Maximum Purchase Budget <span class="required-mark">*</span>
+              </label>
+              <select class="field-input" id="budget" name="budget">
+                <option value="">Select range…</option>
+                <option>Under $400K</option>
+                <option>$400K – $500K</option>
+                <option>$500K – $650K</option>
+                <option>$650K – $800K</option>
+                <option>$800K – $1M</option>
+                <option>$1M+</option>
+              </select>
+              <span class="field-error" id="err-budget"></span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="down-payment">Down Payment Range</label>
+              <select class="field-input" id="down-payment" name="down_payment">
+                <option value="">Select one…</option>
+                <option>5%</option>
+                <option>10%</option>
+                <option>20%</option>
+                <option>20%+</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="lender">Lender / Mortgage Broker</label>
+              <input class="field-input" type="text" id="lender" name="lender"
+                     placeholder="Name or institution (optional)">
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label">
+                Pre-Approval Status <span class="required-mark">*</span>
+              </label>
+              <div class="radio-group">
+                <label class="radio-item">
+                  <input type="radio" name="preapproval" value="Yes, I have a pre-approval letter">
+                  <span class="radio-label">&#9989; Yes, I have a pre-approval letter</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="preapproval" value="In progress">
+                  <span class="radio-label">&#128336; In progress</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="preapproval" value="Not started yet">
+                  <span class="radio-label">&#10060; Not started yet</span>
+                </label>
+              </div>
+              <span class="field-error" id="err-preapproval-group"></span>
+            </div>
+
+          </div><!-- /field-grid -->
+
+          <div class="section-nav has-back">
+            <button type="button" class="btn-back">&larr; Back</button>
+            <button type="button" class="btn-next">Next: Your Situation &rarr;</button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================
+           SECTION 4 — Your Situation
+           ================================================ -->
+      <section class="form-section" id="section-4" data-section="4">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-number">Section 4 of 4</div>
+            <h2>Your Situation</h2>
+            <p>A little context helps me give you the right advice at every step.</p>
+          </div>
+
+          <div class="field-grid">
+
+            <div class="field-group">
+              <label class="field-label" for="housing-situation">Current Housing Situation</label>
+              <select class="field-input" id="housing-situation" name="housing_situation">
+                <option value="">Select one…</option>
+                <option>Renting</option>
+                <option>Own a home to sell</option>
+                <option>Living with family</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">First-Time Buyer?</label>
+              <div class="radio-group">
+                <label class="radio-item">
+                  <input type="radio" name="first-time-buyer" value="Yes">
+                  <span class="radio-label">Yes</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="first-time-buyer" value="No">
+                  <span class="radio-label">No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Currently Working With Another Agent?</label>
+              <div class="radio-group">
+                <label class="radio-item">
+                  <input type="radio" name="other-agent" value="Yes">
+                  <span class="radio-label">Yes</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="other-agent" value="No">
+                  <span class="radio-label">No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label" for="questions">Any Questions or Concerns?</label>
+              <textarea class="field-input" id="questions" name="questions"
+                        placeholder="Anything you'd like me to know or any questions you have so far…" style="min-height:110px;"></textarea>
+            </div>
+
+          </div><!-- /field-grid -->
+
+          <div class="section-nav has-back">
+            <button type="button" class="btn-back">&larr; Back</button>
+            <button type="button" class="btn-next">Review My Answers &rarr;</button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================
+           SECTION 5 — Agent Notes (hidden in client mode)
+           ================================================ -->
+      <section class="form-section section-agent" id="section-5" data-section="5" style="display:none;">
+        <div class="agent-section-banner">&#128274; Internal — Agent Eyes Only</div>
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-number">Section 5 of 5 — Agent Notes</div>
+            <h2>Session Notes</h2>
+            <p>These notes are not sent to the client. They appear in the CRM entry only.</p>
+          </div>
+
+          <div class="field-grid">
+
+            <div class="field-group full-width">
+              <label class="field-label" for="agent-notes">Intake Notes</label>
+              <textarea class="field-input" id="agent-notes" name="agent_notes"
+                        placeholder="Observations, client personality, priorities not captured in form fields…"
+                        style="min-height:120px;"></textarea>
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label" for="next-steps">Next Steps Agreed</label>
+              <textarea class="field-input" id="next-steps" name="next_steps"
+                        placeholder="e.g. Schedule MLS tour for Sat, send pre-approval checklist, follow up Mon…"
+                        style="min-height:90px;"></textarea>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="session-date">Session Date</label>
+              <input class="field-input" type="date" id="session-date" name="session_date">
+            </div>
+
+            <div class="field-group" style="justify-content:flex-end; padding-top:8px;">
+              <label class="checkbox-item" style="align-items:flex-start; gap:12px;">
+                <input type="checkbox" id="crg-signed" name="crg_signed" style="margin-top:3px;">
+                <span style="font-size:14px; color:var(--dark-grey); line-height:1.5;">
+                  <strong>CRG explained &amp; acknowledged</strong><br>
+                  <span style="color:var(--mid-grey); font-size:13px;">Check this to trigger the CRG email to the client</span>
+                </span>
+              </label>
+            </div>
+
+          </div><!-- /field-grid -->
+
+          <div class="section-nav has-back">
+            <button type="button" class="btn-back">&larr; Back</button>
+            <button type="button" class="btn-next">Review &rarr;</button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================
+           REVIEW SCREEN
+           ================================================ -->
+      <section class="form-section" id="review-screen" data-section="review">
+        <div class="review-intro">
+          <h2>Review Your Information</h2>
+          <p>Everything look right? Click any section to edit, then submit when you're ready.</p>
+        </div>
+
+        <div id="review-content">
+          <!-- Dynamically rendered by form.js renderReview() -->
+        </div>
+
+        <div class="section-nav has-back" style="margin-top:28px;">
+          <button type="button" class="btn-back">&larr; Back</button>
+          <button type="submit" class="btn-submit">
+            <span class="spinner"></span>
+            <span class="btn-label">Submit &amp; Get My Welcome Package</span>
+          </button>
+        </div>
+      </section>
+
+    </form><!-- /intake-form -->
+
+  </main>
+
+  <!-- ===== Floating Agent Contact Footer ===== -->
+  <div class="agent-footer">
+    <div class="agent-footer-inner">
+
+      <!-- Left — agent identity + contact + booking -->
+      <div class="agent-contact">
+        <span class="agent-contact-name">Rosh Issac <span style="color:var(--black);font-size:12px;font-weight:400;letter-spacing:0;">Realtor&reg;</span></span>
+        <div class="agent-contact-details">
+          <a href="tel:+18254495083">+1 825&#8209;449&#8209;5083</a>
+          <span class="sep agent-sep-email">&middot;</span>
+          <a href="mailto:rosh@issacrealty.com" class="agent-email-link">rosh@issacrealty.com</a>
+        </div>
+        <!-- Google Calendar scheduling popup button -->
+        <div class="agent-cal-wrap">
+          <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+          <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+          <script>
+            (function() {
+              var target = document.currentScript;
+              window.addEventListener('load', function() {
+                calendar.schedulingButton.load({
+                  url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2ejjF-1VjAkRDIoWQMfxrWIANUnS8gbYJwGmet4Zkw1DW96ZVPMMZ8X3puccmS8mpkIx-l69fh?gv=true',
+                  color: '#E8630A',
+                  label: 'Book a Call with Rosh',
+                  target,
+                });
+              });
+            })();
+          </script>
+        </div>
+      </div>
+
+      <!-- Right — Dreamhouse Realty brokerage logo -->
+      <img src="assets/dreamhouse-logo.png"
+           alt="Dreamhouse Realty Ltd."
+           class="brokerage-logo"
+           title="Associates of Dreamhouse Realty Ltd., Calgary">
+
+    </div>
+  </div>
+
+  <!-- Scripts — order matters -->
+  <script src="js/config.js"></script>
+  <script src="js/emailjs-init.js"></script>
+  <script src="js/form.js"></script>
+
+</body>
+</html>
