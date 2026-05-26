@@ -13,6 +13,14 @@
   <meta property="og:image"       content="https://buyer-intake-form.pages.dev/assets/dreamhouse-logo.png">
   <meta property="og:site_name"   content="Issac Realty Team">
 
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Buyer Intake">
+  <link rel="apple-touch-icon" href="assets/dreamhouse-logo.png">
+
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
@@ -587,6 +595,15 @@
 
     </div>
   </div>
+
+  <!-- PWA service worker registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
 
   <!-- Scripts — order matters -->
   <script src="js/config.js"></script>
