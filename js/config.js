@@ -6,12 +6,12 @@
    ============================================================ */
 
 const CONFIG = {
-  FORMSPREE_FORM_ID:    'YOUR_FORMSPREE_FORM_ID',   // e.g. 'xkndblpj'
-  EMAILJS_PUBLIC_KEY:   'YOUR_EMAILJS_PUBLIC_KEY',  // e.g. 'user_aBcDeF...'
-  EMAILJS_SERVICE_ID:   'YOUR_EMAILJS_SERVICE_ID',  // e.g. 'service_xxxxxxx'
-  EMAILJS_TEMPLATE_ID:  'YOUR_EMAILJS_TEMPLATE_ID', // e.g. 'template_xxxxxxx'
+  FORMSPREE_FORM_ID:    'xjgzajzl',   // e.g. 'xkndblpj'
+  EMAILJS_PUBLIC_KEY:   'zN0MMe3GBsCE-2QS8',  // e.g. 'user_aBcDeF...'
+  EMAILJS_SERVICE_ID:   'service_xezlcfm',  // e.g. 'service_xxxxxxx'
+  EMAILJS_TEMPLATE_ID:  'template_mdxvfte', // e.g. 'template_xxxxxxx'
 
   AGENT_NAME:   'Rosh',
   AGENT_EMAIL:  'rosh@issacrealty.com',
-  AGENT_PHONE:  '(403) 000-0000',   // ← insert real number
+  AGENT_PHONE:  '+1 825-449-5083',
 };
