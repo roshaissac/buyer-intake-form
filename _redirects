@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects
+# Explicitly serve these pages — do NOT fall through to index.html
+/open-house-poster.html  /open-house-poster.html  200
+/thank-you.html          /thank-you.html           200
