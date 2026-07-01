@@ -3,16 +3,17 @@
    Caches core assets so the form loads fast and works offline
    ============================================================ */
 
-const CACHE = 'buyer-intake-v2';
+const CACHE = 'buyer-intake-v3';
+// index.html is now a single self-contained file (CSS + engine inlined).
+// thank-you.html still uses the shared stylesheet. Every path below must
+// exist, or cache.addAll() rejects and the SW install fails.
 const ASSETS = [
   '/',
   '/index.html',
   '/thank-you.html',
   '/css/style.css',
-  '/js/config.js',
-  '/js/emailjs-init.js',
-  '/js/form.js',
-  '/assets/dreamhouse-logo.png',
+  '/assets/fraunces-latin-var.woff2',
+  '/icons/dreamhouse-logo.png',
 ];
 
 self.addEventListener('install', e => {
