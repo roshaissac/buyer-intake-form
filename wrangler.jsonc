@@ -1,0 +1,11 @@
+{
+  // Static-assets-only Worker — serves the single-file buyer intake at
+  // https://buyer-intake-form.rosh-4d0.workers.dev
+  // The backend is Google Apps Script (crm/Code.gs, excluded via .assetsignore).
+  // Deploy: `~/"Issac Realty CRM"/node_modules/.bin/wrangler deploy` from this dir
+  // (respects .assetsignore, so no move-files-out dance).
+  "name": "buyer-intake-form",
+  "compatibility_date": "2026-06-01",
+  "observability": { "enabled": true },
+  "assets": { "directory": "." }
+}

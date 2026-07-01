@@ -11,4 +11,5 @@ templates/*
 README.md
 .gitignore
 .assetsignore
+wrangler.jsonc
 **/.DS_Store
