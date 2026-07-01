@@ -13,6 +13,7 @@
     {{timeline}}      — move-in timeframe
     {{neighbourhoods}}— preferred neighbourhoods
     {{preapproval}}   — pre-approval status
+    {{investment_summary}} — multi-family/investment one-liner (blank for ordinary buyers)
     {{next_steps}}    — agreed next steps (agent mode) or default copy
     {{agent_name}}    — Rosh
     {{agent_email}}   — rosh@issacrealty.com
@@ -23,7 +24,7 @@
 
   <!-- Header -->
   <div style="background: #1A1A1A; padding: 28px 32px; text-align: center;">
-    <p style="color: #E8630A; font-size: 13px; letter-spacing: 2px; margin: 0; text-transform: uppercase; font-weight: 700;">Issac Realty Team</p>
+    <p style="color: #FF7A1A; font-size: 13px; letter-spacing: 2px; margin: 0; text-transform: uppercase; font-weight: 700;">Issac Realty Team</p>
     <p style="color: #888; font-size: 11px; margin: 4px 0 0;">Associates of Dreamhouse Realty Ltd., Calgary</p>
   </div>
 
@@ -62,14 +63,17 @@
       </tr>
     </table>
 
+    <!-- Investment summary (only populated for multi-family / investment buyers) -->
+    <p style="color: #3A3A3A; font-size: 14px; line-height: 1.7; margin: 0 0 8px;">{{investment_summary}}</p>
+
     <!-- CRG Brief -->
-    <div style="background: #1A1A1A; border-left: 4px solid #E8630A; padding: 22px 26px; margin: 28px 0; border-radius: 4px;">
-      <p style="color: #E8630A; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 12px; font-weight: 700;">
+    <div style="background: #1A1A1A; border-left: 4px solid #FF7A1A; padding: 22px 26px; margin: 28px 0; border-radius: 4px;">
+      <p style="color: #FF7A1A; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 12px; font-weight: 700;">
         📋 Your Consumer Relationship Guide — Plain English Version
       </p>
       <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0 0 14px;">
         As a buyer, you have the right to know exactly how I work and who I represent.
-        The <strong style="color: #E8630A;">Consumer Relationship Guide (CRG)</strong> is an Alberta RECA requirement —
+        The <strong style="color: #FF7A1A;">Consumer Relationship Guide (CRG)</strong> is an Alberta RECA requirement —
         it's not a contract, it just explains your options.
       </p>
       <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0 0 14px;">
@@ -78,35 +82,35 @@
         I assist but don't formally represent you.
       </p>
       <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0;">
-        My recommendation: let's work as <strong style="color: #E8630A;">agent and client</strong>.
+        My recommendation: let's work as <strong style="color: #FF7A1A;">agent and client</strong>.
         That way I'm fully in your corner — negotiating, advising, and advocating for you at every step.
-        <strong style="color: #E8630A;">No extra cost to you</strong> — the seller pays my commission.
+        <strong style="color: #FF7A1A;">No extra cost to you</strong> — the seller pays my commission.
       </p>
     </div>
 
     <!-- Next Steps -->
-    <h3 style="color: #E8630A; font-size: 17px; margin-bottom: 10px;">What Happens Next</h3>
+    <h3 style="color: #FF7A1A; font-size: 17px; margin-bottom: 10px;">What Happens Next</h3>
     <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px;">{{next_steps}}</p>
 
     <!-- CTA Button -->
     <div style="text-align: center; margin: 36px 0 28px;">
       <a href="mailto:{{agent_email}}?subject=Re%3A%20My%20Calgary%20Home%20Search&body=Hi%20{{agent_name}}%2C%0A%0A"
-         style="background: #E8630A; color: #fff; padding: 15px 36px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; letter-spacing: 0.02em;">
+         style="background: #FF7A1A; color: #fff; padding: 15px 36px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; letter-spacing: 0.02em;">
         Reply to {{agent_name}} Directly
       </a>
     </div>
 
     <!-- CRG PDF Download -->
     <div style="text-align: center; margin: 0 0 16px;">
-      <a href="https://buyer-intake-form.pages.dev/assets/consumer-relationships-guide-brochure.pdf"
+      <a href="https://buyer-intake-form.rosh-4d0.workers.dev/assets/consumer-relationships-guide-brochure.pdf"
          target="_blank"
-         style="display: inline-block; background: #F0F0F0; color: #1A1A1A; border: 2px solid #E8630A; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">
+         style="display: inline-block; background: #F0F0F0; color: #1A1A1A; border: 2px solid #FF7A1A; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">
         📄 Download Your Consumer Relationship Guide (PDF)
       </a>
     </div>
     <p style="font-size: 13px; color: #3A3A3A; text-align: center; margin: 0 0 28px; line-height: 1.7;">
       Please <strong>sign and date the acknowledgement</strong> of receipt of the guide and email it back to
-      <a href="mailto:rosh@issacrealty.com" style="color: #E8630A;">rosh@issacrealty.com</a>.<br>
+      <a href="mailto:rosh@issacrealty.com" style="color: #FF7A1A;">rosh@issacrealty.com</a>.<br>
       This is a <strong>RECA mandatory requirement</strong> for me to represent you as your agent.
     </p>
 

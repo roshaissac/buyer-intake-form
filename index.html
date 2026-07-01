@@ -10,11 +10,11 @@
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Start Your Calgary Home Search — Issac Realty Team">
   <meta property="og:description" content="Complete your Buyer Intake in 5 minutes. Get your personalized Welcome Package plus a plain-English Consumer Relationship Guide from Rosh.">
-  <meta property="og:image"        content="https://raw.githubusercontent.com/roshaissac/buyer-intake-form/main/icons/og-image.png">
+  <meta property="og:image"        content="https://buyer-intake-form.rosh-4d0.workers.dev/icons/og-image.png">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type"   content="image/png">
-  <meta property="og:url"          content="https://buyer-intake-form.pages.dev">
+  <meta property="og:url"          content="https://buyer-intake-form.rosh-4d0.workers.dev">
   <meta property="og:site_name"   content="Issac Realty Team">
 
   <!-- PWA -->
@@ -34,15 +34,20 @@
 
   <!-- ===== Site Header ===== -->
   <header class="site-header">
-    <div class="header-inner">
-      <div class="brand">
-        <img src="assets/logo.png" alt="Issac Realty Team" class="logo" onerror="this.style.display='none'">
-        <div class="brand-text">
-          <span class="brand-name">Issac Realty Team</span>
-          <span class="brand-sub">Associates of Dreamhouse Realty Ltd., Calgary</span>
+    <div class="header-top-bar">
+      <div class="header-left">
+        <div class="header-brand">
+          <span class="header-brand-name">Issac Realty Team</span>
+          <span class="header-brand-sub">Associates of Dreamhouse Realty Ltd., Calgary</span>
         </div>
       </div>
-      <div id="agent-badge" class="agent-badge" style="display:none;">&#128274; Agent Mode</div>
+      <div class="header-right">
+        <img src="icons/dreamhouse-logo.png" alt="Dreamhouse Realty" class="header-logo">
+      </div>
+    </div>
+    <div class="header-title-strip">
+      <span class="header-title-text">Buyer Intake</span>
+      <span id="agent-badge" class="agent-badge" style="display:none;">&#128274; Agent Mode</span>
     </div>
   </header>
 
@@ -229,8 +234,82 @@
                   <input type="checkbox" name="property-type" value="Duplex">
                   <span class="checkbox-label">Duplex</span>
                 </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="property-type" value="Multi-Family / Investment">
+                  <span class="checkbox-label">Multi-Family / Investment</span>
+                </label>
               </div>
               <span class="field-error" id="err-property-type-group"></span>
+            </div>
+
+            <!-- ============================================
+                 CONDITIONAL — Multi-Family / Investment
+                 Shows only when the option above is checked.
+                 ============================================ -->
+            <div class="field-group full-width invest-block" id="investment-block" style="display:none;">
+              <div class="invest-banner">&#128200; Investment / Multi-Family Details</div>
+
+              <div class="field-grid two-col" style="margin-top:0;">
+                <div class="field-group">
+                  <label class="field-label" for="inv-units">Number of Units</label>
+                  <select class="field-input" id="inv-units" name="inv_units">
+                    <option value="">Select one&hellip;</option>
+                    <option>Duplex (2 units)</option>
+                    <option>Triplex (3 units)</option>
+                    <option>Fourplex (4 units)</option>
+                    <option>5+ units</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="inv-financing">Financing Type</label>
+                  <select class="field-input" id="inv-financing" name="inv_financing">
+                    <option value="">Select one&hellip;</option>
+                    <option>Conventional</option>
+                    <option>CMHC insured</option>
+                    <option>Private</option>
+                    <option>Unsure</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="inv-cashflow">Target Monthly Cash Flow</label>
+                  <input class="field-input" type="text" id="inv-cashflow" name="inv_cashflow"
+                         placeholder="e.g. $500 / unit, or $1,500 total">
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="inv-portfolio">Current Portfolio</label>
+                  <select class="field-input" id="inv-portfolio" name="inv_portfolio">
+                    <option value="">Select one&hellip;</option>
+                    <option>This is my first investment</option>
+                    <option>I already own rental(s)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-group" style="margin-top:18px;">
+                <label class="field-label">Primary Investment Goal</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="inv-goal" value="Cash flow"><span class="radio-label">Cash flow</span></label>
+                  <label class="radio-item"><input type="radio" name="inv-goal" value="Appreciation"><span class="radio-label">Appreciation</span></label>
+                  <label class="radio-item"><input type="radio" name="inv-goal" value="Both"><span class="radio-label">Both</span></label>
+                </div>
+              </div>
+
+              <div class="field-group" style="margin-top:18px;">
+                <label class="field-label">Comfortable calculating cap rate?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="inv-cap-rate" value="Yes"><span class="radio-label">Yes</span></label>
+                  <label class="radio-item"><input type="radio" name="inv-cap-rate" value="No — show me how"><span class="radio-label">No — show me how</span></label>
+                </div>
+              </div>
+
+              <div class="field-group" style="margin-top:18px;">
+                <label class="field-label">Property Management</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="inv-management" value="Self-manage"><span class="radio-label">Self-manage</span></label>
+                  <label class="radio-item"><input type="radio" name="inv-management" value="Hire a property manager"><span class="radio-label">Hire a property manager</span></label>
+                  <label class="radio-item"><input type="radio" name="inv-management" value="Undecided"><span class="radio-label">Undecided</span></label>
+                </div>
+              </div>
             </div>
 
             <div class="field-group full-width">
@@ -565,37 +644,34 @@
 
       <!-- Left — agent identity + contact + booking -->
       <div class="agent-contact">
-        <span class="agent-contact-name">Rosh Issac <span style="color:var(--black);font-size:12px;font-weight:400;letter-spacing:0;">Realtor&reg;</span></span>
         <div class="agent-contact-details">
-          <a href="tel:+18254495083">+1 825&#8209;449&#8209;5083</a>
+          <span class="agent-contact-name">Rosh Issac</span>
+          <span class="agent-realtor-tag">Realtor&reg;</span>
+          <span class="sep">&middot;</span>
+          <a href="tel:+18254495083" class="agent-phone-link">+1 825&#8209;449&#8209;5083</a>
           <span class="sep agent-sep-email">&middot;</span>
           <a href="mailto:rosh@issacrealty.com" class="agent-email-link">rosh@issacrealty.com</a>
         </div>
-        <!-- Google Calendar scheduling popup button -->
-        <div class="agent-cal-wrap">
-          <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-          <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-          <script>
-            (function() {
-              var target = document.currentScript;
-              window.addEventListener('load', function() {
-                calendar.schedulingButton.load({
-                  url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2ejjF-1VjAkRDIoWQMfxrWIANUnS8gbYJwGmet4Zkw1DW96ZVPMMZ8X3puccmS8mpkIx-l69fh?gv=true',
-                  color: '#E8630A',
-                  label: 'Book a Call with Rosh',
-                  target,
-                });
-              });
-            })();
-          </script>
-        </div>
       </div>
 
-      <!-- Right — Dreamhouse Realty brokerage logo -->
-      <img src="icons/dreamhouse-logo.png"
-           alt="Dreamhouse Realty Ltd."
-           class="brokerage-logo"
-           title="Associates of Dreamhouse Realty Ltd., Calgary">
+      <!-- Right — Book a Call button -->
+      <div class="agent-cal-wrap agent-cal-right">
+        <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+        <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+        <script>
+          (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+              calendar.schedulingButton.load({
+                url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2ejjF-1VjAkRDIoWQMfxrWIANUnS8gbYJwGmet4Zkw1DW96ZVPMMZ8X3puccmS8mpkIx-l69fh?gv=true',
+                color: '#FF7A1A',
+                label: 'Book a Call with Rosh',
+                target,
+              });
+            });
+          })();
+        </script>
+      </div>
 
     </div>
   </div>

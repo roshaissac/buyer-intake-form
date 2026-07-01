@@ -11,7 +11,12 @@ const CONFIG = {
   EMAILJS_SERVICE_ID:   'service_xezlcfm',  // e.g. 'service_xxxxxxx'
   EMAILJS_TEMPLATE_ID:  'template_mdxvfte', // e.g. 'template_xxxxxxx'
 
+  GAS_CRM_URL:    'https://script.google.com/macros/s/AKfycbw80iluFmA_xq-hCKU724iq-CMtOBUikXvd7nsa8-AYCD6pYJO3rW5QVm4wQ7FaklHPzA/exec',
+
   AGENT_NAME:   'Rosh',
   AGENT_EMAIL:  'rosh@issacrealty.com',
   AGENT_PHONE:  '+1 825-449-5083',
+
+  // Branded lead-alert copy goes here (keeps the main inbox clean)
+  LEAD_ALERT_EMAIL: 'info@issacrealty.com',
 };

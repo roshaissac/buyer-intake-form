@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   bindModeButtons();
   bindNavButtons();
   bindSubmit();
+  bindInvestmentToggle();
   autoFillSessionDate();
   showSection(1);
   updateProgress();
@@ -84,6 +85,21 @@ function setMode(mode) {
   if (step5) step5.style.display = mode === 'agent' ? 'flex' : 'none';
 
   updateProgress();
+}
+
+// --- Investment / Multi-family conditional block -----------
+
+function bindInvestmentToggle() {
+  const block = document.getElementById('investment-block');
+  if (!block) return;
+  const sync = () => {
+    const checked = checkedValues('property-type').includes('Multi-Family / Investment');
+    block.style.display = checked ? 'block' : 'none';
+  };
+  document.querySelectorAll('input[name="property-type"]').forEach(cb => {
+    cb.addEventListener('change', sync);
+  });
+  sync();
 }
 
 // --- Section navigation ------------------------------------
@@ -158,8 +174,14 @@ function updateProgress() {
 
 // --- Validation -------------------------------------------
 
-const CANADIAN_PHONE = /^[\d\s\-().+]{10,15}$/;
-const EMAIL_REGEX    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Accepts Canadian formats: 10-digit (403-555-0123) or 11-digit +1 (1 403…).
+// Counts actual digits rather than just allowed characters, so "((((((((((" fails.
+function isValidPhone(raw) {
+  const digits = raw.replace(/\D/g, '');
+  return digits.length === 10 || (digits.length === 11 && digits[0] === '1');
+}
 
 function validateSection(n) {
   clearErrors();
@@ -178,8 +200,8 @@ function validateSection(n) {
     }
     if (!phone) {
       errors.push({ id: 'phone', msg: 'Mobile number is required' });
-    } else if (!CANADIAN_PHONE.test(phone)) {
-      errors.push({ id: 'phone', msg: 'Please enter a valid phone number (10 digits)' });
+    } else if (!isValidPhone(phone)) {
+      errors.push({ id: 'phone', msg: 'Please enter a valid 10-digit Canadian phone number' });
     }
   }
 
@@ -263,6 +285,16 @@ function getFormData() {
     basementSuite:  radioVal('basement-suite'),
     garage:         radioVal('garage'),
 
+    // Section 2 — Investment / Multi-family (conditional)
+    isInvestment:     checkedValues('property-type').includes('Multi-Family / Investment'),
+    investUnits:      val('inv-units'),
+    investFinancing:  val('inv-financing'),
+    investCashflow:   val('inv-cashflow'),
+    investPortfolio:  val('inv-portfolio'),
+    investGoal:       radioVal('inv-goal'),
+    investCapRate:    radioVal('inv-cap-rate'),
+    investManagement: radioVal('inv-management'),
+
     // Section 3
     timeline:       val('timeline'),
     budget:         val('budget'),
@@ -340,6 +372,22 @@ function renderReview() {
     },
   ];
 
+  if (data.isInvestment) {
+    sections.splice(2, 0, {
+      title: 'Investment Details',
+      goTo: 2,
+      rows: [
+        ['Number of Units',   data.investUnits],
+        ['Investment Goal',   data.investGoal],
+        ['Target Cash Flow',  data.investCashflow],
+        ['Cap Rate Comfort',  data.investCapRate],
+        ['Financing Type',    data.investFinancing],
+        ['Current Portfolio', data.investPortfolio],
+        ['Management',        data.investManagement],
+      ],
+    });
+  }
+
   if (state.mode === 'agent') {
     sections.push({
       title: 'Agent Notes',
@@ -402,15 +450,26 @@ async function handleSubmit(e) {
   setLoading(true);
 
   const data = getFormData();
-  let emailOk = false;
 
-  // Step 1 — EmailJS (best-effort)
+  // Step 1 — EmailJS (best-effort).
+  // Client mode always emails. Agent mode only emails the client when the
+  // agent has checked "CRG explained & acknowledged" — matching the UI promise.
+  const shouldEmailClient = state.mode === 'client' || data.crgSigned === 'Yes';
+  if (shouldEmailClient) {
+    try {
+      await sendThankYouEmail(data);
+    } catch (err) {
+      console.warn('EmailJS failed:', err);
+      if (warningEl) warningEl.classList.add('visible');
+    }
+  }
+
+  // Step 1b — Branded lead alert to the internal alias (always fires, best-effort).
+  // Independent of mode/CRG and of the Formspree filter, so a lead is never missed.
   try {
-    await sendThankYouEmail(data);
-    emailOk = true;
+    await sendLeadAlert(data);
   } catch (err) {
-    console.warn('EmailJS failed:', err);
-    if (warningEl) warningEl.classList.add('visible');
+    console.warn('Lead alert failed:', err);
   }
 
   // Step 2 — Formspree POST
@@ -429,7 +488,21 @@ async function handleSubmit(e) {
     return;
   }
 
-  // Step 3 — Redirect
+  // Step 3 — Google Apps Script CRM (best-effort: logs to Google Sheets)
+  if (CONFIG.GAS_CRM_URL && CONFIG.GAS_CRM_URL !== 'YOUR_APPS_SCRIPT_WEB_APP_URL') {
+    try {
+      await fetch(CONFIG.GAS_CRM_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(buildFormspreePayload(data)),
+        mode: 'no-cors',
+      });
+    } catch (err) {
+      console.warn('CRM post failed:', err);
+    }
+  }
+
+  // Step 4 — Redirect
   const name = encodeURIComponent(data.fullName.split(' ')[0]);
   window.location.href = `thank-you.html?name=${name}`;
 }
@@ -450,6 +523,14 @@ function buildFormspreePayload(data) {
     min_bathrooms:      data.minBathrooms,
     basement_suite:     data.basementSuite,
     garage:             data.garage,
+    is_investment:      data.isInvestment ? 'Yes' : 'No',
+    invest_units:       data.investUnits,
+    invest_goal:        data.investGoal,
+    invest_cashflow:    data.investCashflow,
+    invest_cap_rate:    data.investCapRate,
+    invest_financing:   data.investFinancing,
+    invest_portfolio:   data.investPortfolio,
+    invest_management:  data.investManagement,
     timeline:           data.timeline,
     budget:             data.budget,
     down_payment:       data.downPayment,

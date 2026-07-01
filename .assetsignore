@@ -1,0 +1,14 @@
+# Files in this folder must NOT be served publicly by Cloudflare.
+# (Cloudflare Workers Static Assets honours .assetsignore, gitignore-style.)
+.git
+.git/*
+.claude
+.claude/*
+crm
+crm/*
+templates
+templates/*
+README.md
+.gitignore
+.assetsignore
+**/.DS_Store

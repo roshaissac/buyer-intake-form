@@ -3,7 +3,7 @@
    Caches core assets so the form loads fast and works offline
    ============================================================ */
 
-const CACHE = 'buyer-intake-v1';
+const CACHE = 'buyer-intake-v2';
 const ASSETS = [
   '/',
   '/index.html',

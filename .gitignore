@@ -1,0 +1,5 @@
+.DS_Store
+**/.DS_Store
+.claude/
+# GAS backend lives in the Apps Script project (managed via clasp), not here.
+crm/Code.gs

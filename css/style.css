@@ -5,8 +5,8 @@
 
 /* --- Brand tokens ----------------------------------------- */
 :root {
-  --orange:      #E8630A;
-  --orange-dark: #C04E00;
+  --orange:      #FF7A1A;
+  --orange-dark: #FF7A1A;
   --amber:       #D4890A;
   --black:       #1A1A1A;
   --dark-grey:   #3A3A3A;
@@ -15,10 +15,16 @@
   --cream:       #FFF4EC;
   --white:       #FFFFFF;
 
-  --font: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  --radius: 6px;
-  --radius-lg: 12px;
-  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+  --orange-soft: #FFF1E6;
+  --hairline:    #ECECEC;
+  --ink:         #141414;
+
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --radius:    10px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+  --shadow:    0 1px 2px rgba(20,20,20,0.04), 0 10px 30px rgba(20,20,20,0.07);
+  --shadow-sm: 0 1px 2px rgba(20,20,20,0.05), 0 3px 10px rgba(20,20,20,0.05);
   --transition: 0.18s ease;
   --max-w: 760px;
 }
@@ -36,76 +42,115 @@ body {
   min-height: 100vh;
   font-size: 16px;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* --- Site header ------------------------------------------ */
 .site-header {
-  background: var(--black);
-  padding: 18px 24px;
   position: sticky;
   top: 0;
   z-index: 200;
+  background: var(--black);
 }
 
-.header-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
+.header-top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--ink);
 }
 
-.brand {
+.header-left {
   display: flex;
   align-items: center;
-  gap: 14px;
+  min-width: 0;
 }
 
-.logo {
-  height: 40px;
+.header-logo {
+  height: 42px;
   width: auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px 7px;
+  flex-shrink: 0;
 }
 
-.brand-text {
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-brand {
   display: flex;
   flex-direction: column;
+  gap: 1px;
+  min-width: 0;
 }
 
-.brand-name {
-  color: var(--orange);
-  font-size: 15px;
+.header-brand-name {
+  font-size: 1.18rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  color: var(--orange);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
-.brand-sub {
-  color: var(--mid-grey);
-  font-size: 11px;
-  letter-spacing: 0.02em;
+.header-brand-sub {
+  font-size: 0.72rem;
+  color: #9a9a9a;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Slim, refined title strip with the Agent badge living inside it */
+.header-title-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  border-top: 1px solid rgba(255,122,26,0.35);
+}
+
+.header-title-text {
+  flex: 1;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f2f2f2;
 }
 
 .agent-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: var(--orange);
   color: var(--white);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 20px;
-  flex-shrink: 0;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(255,122,26,0.4);
 }
 
 /* --- Mode toggle bar -------------------------------------- */
 .mode-toggle-bar {
   background: var(--white);
-  border-bottom: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--hairline);
   padding: 12px 24px;
-  position: sticky;
-  top: 77px; /* below header */
-  z-index: 190;
 }
 
 .mode-toggle-inner {
@@ -124,9 +169,9 @@ body {
 }
 
 .mode-btn {
-  padding: 8px 18px;
-  border-radius: 24px;
-  border: 2px solid var(--light-grey);
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--hairline);
   background: var(--white);
   color: var(--dark-grey);
   font-size: 13px;
@@ -144,6 +189,7 @@ body {
   border-color: var(--orange);
   color: var(--white);
   font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255,122,26,0.28);
 }
 
 /* --- Progress bar ----------------------------------------- */
@@ -151,9 +197,6 @@ body {
   background: var(--white);
   border-bottom: 1px solid var(--light-grey);
   padding: 0 24px 16px;
-  position: sticky;
-  top: 129px; /* below header + mode bar */
-  z-index: 180;
 }
 
 .progress-inner {
@@ -214,6 +257,7 @@ body {
   background: var(--orange);
   border-color: var(--orange);
   color: var(--white);
+  box-shadow: 0 0 0 4px rgba(255,122,26,0.16);
 }
 
 .progress-step.done .step-dot {
@@ -247,16 +291,19 @@ body {
 }
 
 .form-intro h1 {
-  font-size: 26px;
-  color: var(--black);
-  font-weight: 700;
-  margin-bottom: 8px;
+  font-size: 30px;
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  margin-bottom: 10px;
 }
 
 .form-intro p {
   color: var(--dark-grey);
-  font-size: 15px;
+  font-size: 15.5px;
   line-height: 1.7;
+  max-width: 56ch;
 }
 
 /* --- Form sections ---------------------------------------- */
@@ -276,22 +323,24 @@ body {
 
 .section-card {
   background: var(--white);
+  border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-  padding: 28px 32px 24px;
+  padding: 30px 32px 26px;
   margin-bottom: 20px;
 }
 
 .section-header {
   margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--light-grey);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--hairline);
 }
 
 .section-header h2 {
-  font-size: 19px;
-  color: var(--black);
+  font-size: 21px;
+  color: var(--ink);
   font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 4px;
 }
 
@@ -345,23 +394,23 @@ label.field-label .required-mark {
 /* --- Text / email / tel / date inputs -------------------- */
 .field-input {
   width: 100%;
-  padding: 11px 14px;
-  border: 1.5px solid #D8D8D8;
+  padding: 13px 15px;
+  border: 1.5px solid #E2E2E2;
   border-radius: var(--radius);
-  background: var(--light-grey);
+  background: #FAFAFA;
   font-family: var(--font);
-  font-size: 15px;
-  color: var(--black);
-  transition: border-color var(--transition), background var(--transition);
+  font-size: 16px; /* 16px avoids iOS zoom-on-focus */
+  color: var(--ink);
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
   outline: none;
 }
 
-.field-input::placeholder { color: var(--mid-grey); }
+.field-input::placeholder { color: #A8A8A8; }
 
 .field-input:focus {
   border-color: var(--orange);
   background: var(--white);
-  box-shadow: 0 0 0 3px rgba(232,99,10,0.12);
+  box-shadow: 0 0 0 3.5px rgba(255,122,26,0.15);
 }
 
 .field-input.error {
@@ -399,6 +448,8 @@ textarea.field-input {
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  min-height: 44px; /* comfortable tap target */
+  padding: 2px 4px;
 }
 
 .radio-item input[type="radio"] {
@@ -420,7 +471,7 @@ textarea.field-input {
 }
 
 .radio-item input[type="radio"]:focus {
-  outline: 2px solid rgba(232,99,10,0.3);
+  outline: 2px solid rgba(255,122,26,0.3);
   outline-offset: 2px;
 }
 
@@ -442,6 +493,8 @@ textarea.field-input {
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  min-height: 44px; /* comfortable tap target */
+  padding: 2px 4px;
 }
 
 .checkbox-item input[type="checkbox"] {
@@ -475,7 +528,7 @@ textarea.field-input {
 }
 
 .checkbox-item input[type="checkbox"]:focus {
-  outline: 2px solid rgba(232,99,10,0.3);
+  outline: 2px solid rgba(255,122,26,0.3);
   outline-offset: 2px;
 }
 
@@ -511,7 +564,7 @@ textarea.field-input {
   gap: 12px;
   margin-top: 28px;
   padding-top: 20px;
-  border-top: 1px solid var(--light-grey);
+  border-top: 1px solid var(--hairline);
 }
 
 .section-nav.has-back {
@@ -520,10 +573,10 @@ textarea.field-input {
 
 .btn-back {
   background: none;
-  border: 1.5px solid var(--light-grey);
+  border: 1.5px solid #DCDCDC;
   color: var(--dark-grey);
-  padding: 11px 22px;
-  border-radius: var(--radius);
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
   font-size: 14px;
   font-weight: 600;
   transition: all var(--transition);
@@ -535,40 +588,43 @@ textarea.field-input {
 }
 
 .btn-next {
-  background: var(--black);
+  background: var(--ink);
   color: var(--white);
   border: none;
-  padding: 12px 28px;
-  border-radius: var(--radius);
+  padding: 13px 30px;
+  border-radius: var(--radius-pill);
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   transition: all var(--transition);
+  box-shadow: 0 4px 14px rgba(20,20,20,0.18);
 }
 
 .btn-next:hover {
-  background: var(--dark-grey);
+  background: #000;
   transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(20,20,20,0.24);
 }
 
 .btn-submit {
   background: var(--orange);
   color: var(--white);
   border: none;
-  padding: 14px 32px;
-  border-radius: var(--radius);
-  font-size: 15px;
+  padding: 15px 34px;
+  border-radius: var(--radius-pill);
+  font-size: 15.5px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   transition: all var(--transition);
   min-width: 220px;
   position: relative;
+  box-shadow: 0 6px 18px rgba(255,122,26,0.32);
 }
 
 .btn-submit:hover:not(:disabled) {
   background: var(--orange-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(232,99,10,0.35);
+  box-shadow: 0 8px 22px rgba(255,122,26,0.42);
 }
 
 .btn-submit:disabled {
@@ -617,6 +673,23 @@ textarea.field-input {
 
 .section-agent .section-card {
   border-top: 3px solid var(--orange);
+}
+
+/* --- Investment / Multi-family conditional block ---------- */
+.invest-block {
+  background: var(--cream);
+  border: 1.5px solid var(--orange);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px 22px;
+}
+
+.invest-banner {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
 }
 
 /* --- Review screen ---------------------------------------- */
@@ -671,7 +744,7 @@ textarea.field-input {
 }
 
 .btn-edit:hover {
-  background: rgba(232,99,10,0.1);
+  background: rgba(255,122,26,0.1);
 }
 
 .review-section-body {
@@ -812,7 +885,7 @@ textarea.field-input {
 
 /* --- Floating agent footer -------------------------------- */
 
-/* Push page content above the sticky footer */
+/* Push page content above the fixed footer */
 body { padding-bottom: 96px; }
 
 .agent-footer {
@@ -821,10 +894,13 @@ body { padding-bottom: 96px; }
   left: 0;
   right: 0;
   z-index: 300;
-  background: var(--white);
-  border-top: 2px solid var(--light-grey);
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.9);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-top: 1px solid var(--hairline);
+  box-shadow: 0 -6px 26px rgba(20,20,20,0.08);
   padding: 10px 24px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
 }
 
 .agent-footer-inner {
@@ -833,7 +909,8 @@ body { padding-bottom: 96px; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px 16px;
+  flex-wrap: wrap; /* safety net: button wraps below instead of overlapping */
 }
 
 /* Left block — contact info */
@@ -845,20 +922,28 @@ body { padding-bottom: 96px; }
 }
 
 .agent-contact-name {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--orange);
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .agent-contact-details {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 10px;
-  font-size: 12px;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 6px 8px;
+  font-size: 12.5px;
   color: var(--dark-grey);
+  min-width: 0;
+}
+
+.agent-realtor-tag {
+  font-size: 11px;
+  color: var(--mid-grey);
+  margin-left: 1px;
 }
 
 .agent-contact-details a {
@@ -867,40 +952,41 @@ body { padding-bottom: 96px; }
   transition: color var(--transition);
 }
 
+.agent-phone-link {
+  font-weight: 700 !important;
+  color: var(--dark-grey) !important;
+}
+
 .agent-contact-details a:hover { color: var(--orange); }
 
 .agent-contact-details .sep {
-  color: var(--light-grey);
+  color: #C8C8C8;
   font-size: 14px;
   line-height: 1;
 }
 
-/* Google Calendar scheduling button sits below the details line */
+/* Override Google Calendar scheduling button styles */
+.agent-cal-right button,
+.agent-cal-right [role="button"] {
+  border-radius: 999px !important;
+  color: #fff !important;
+}
+
+/* Google Calendar scheduling button */
 .agent-cal-wrap {
-  margin-top: 4px;
   display: flex;
   align-items: center;
 }
 
-/* Right block — brokerage logo */
-.brokerage-logo {
-  height: 48px;
-  width: auto;
-  object-fit: contain;
+.agent-cal-right {
   flex-shrink: 0;
-  /* gentle white-background pill so logo reads on any bg */
-  background: var(--white);
-  border-radius: 6px;
-  padding: 2px 6px;
 }
 
 /* --- Responsive ------------------------------------------- */
 @media (max-width: 600px) {
-  .site-header { padding: 14px 16px; }
-  .brand-sub { display: none; }
-  .mode-toggle-bar { padding: 10px 16px; top: 70px; }
+  .mode-toggle-bar { padding: 10px 16px; }
   .mode-btn { font-size: 12px; padding: 7px 12px; }
-  .progress-wrapper { top: 113px; padding: 0 16px 14px; }
+  .progress-wrapper { padding: 0 16px 14px; }
   .step-label { display: none; }
   .step-dot { width: 24px; height: 24px; font-size: 11px; }
   .form-container { padding: 20px 16px 48px; }
@@ -910,12 +996,13 @@ body { padding-bottom: 96px; }
   .review-row { flex-direction: column; gap: 4px; }
   .review-key { min-width: auto; }
   .thankyou-card { padding: 32px 24px; }
-  /* Footer compact on mobile */
+  /* Footer: stack into two centered rows so nothing overflows */
   .agent-footer { padding: 8px 14px; }
+  .agent-footer-inner { flex-direction: column; align-items: stretch; gap: 8px; }
   .agent-contact-name { font-size: 13px; }
-  .agent-contact-details { font-size: 11px; gap: 4px 8px; }
-  .brokerage-logo { height: 36px; }
-  body { padding-bottom: 88px; }
+  .agent-contact-details { font-size: 11px; gap: 4px 8px; flex-wrap: wrap; justify-content: center; }
+  .agent-cal-wrap.agent-cal-right { justify-content: center; }
+  body { padding-bottom: 116px; }
 }
 
 @media (max-width: 400px) {

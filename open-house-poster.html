@@ -29,7 +29,7 @@
 
     /* ---- Top orange bar ---- */
     .top-bar {
-      background: #E8630A;
+      background: #FF7A1A;
       padding: 18px 32px;
       display: flex;
       align-items: center;
@@ -73,12 +73,12 @@
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: #E8630A;
+      background: #FF7A1A;
       opacity: 0.08;
     }
 
     .hero-eyebrow {
-      color: #E8630A;
+      color: #FF7A1A;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.2em;
@@ -94,7 +94,7 @@
       margin-bottom: 16px;
     }
 
-    .hero h1 span { color: #E8630A; }
+    .hero h1 span { color: #FF7A1A; }
 
     .hero p {
       color: #aaa;
@@ -146,7 +146,7 @@
 
     .qr-url {
       font-size: 12px;
-      color: #E8630A;
+      color: #FF7A1A;
       font-weight: 600;
       text-align: center;
       word-break: break-all;
@@ -175,7 +175,7 @@
     .benefit-icon {
       width: 36px;
       height: 36px;
-      background: #E8630A;
+      background: #FF7A1A;
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -202,7 +202,7 @@
     /* ---- Steps strip ---- */
     .steps {
       background: #FFF4EC;
-      border-top: 3px solid #E8630A;
+      border-top: 3px solid #FF7A1A;
       padding: 24px 44px;
       display: flex;
       gap: 0;
@@ -224,7 +224,7 @@
       position: absolute;
       right: -8px;
       top: 10px;
-      color: #E8630A;
+      color: #FF7A1A;
       font-size: 18px;
       font-weight: 700;
     }
@@ -232,7 +232,7 @@
     .step-num {
       width: 32px;
       height: 32px;
-      background: #E8630A;
+      background: #FF7A1A;
       color: #fff;
       border-radius: 50%;
       font-size: 14px;
@@ -267,7 +267,7 @@
     }
 
     .agent-info .agent-name {
-      color: #E8630A;
+      color: #FF7A1A;
       font-size: 18px;
       font-weight: 800;
       letter-spacing: 0.02em;
@@ -333,13 +333,10 @@
     <!-- QR Code -->
     <div class="qr-block">
       <div class="qr-frame">
-        <!-- Inline SVG QR code inserted by script below -->
-        <div id="qr-placeholder" style="width:180px;height:180px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;border-radius:6px;color:#888;font-size:12px;text-align:center;">
-          QR Code loads here
-        </div>
+        <img src="assets/qr-buyer-intake.png" alt="QR Code" style="width:180px;height:180px;display:block;">
       </div>
       <div class="qr-label">Scan with your phone camera</div>
-      <div class="qr-url">buyer-intake-form.pages.dev</div>
+      <div class="qr-url">buyer-intake-form.rosh-4d0.workers.dev</div>
     </div>
 
     <!-- Benefits -->
@@ -422,15 +419,5 @@
 
 </div>
 
-<!-- Load and inline the QR SVG -->
-<script>
-  fetch('assets/qr-buyer-intake.svg')
-    .then(r => r.text())
-    .then(svg => {
-      const el = document.getElementById('qr-placeholder');
-      el.outerHTML = svg.replace('<svg ', '<svg width="180" height="180" ');
-    })
-    .catch(() => {});
-</script>
 </body>
 </html>
