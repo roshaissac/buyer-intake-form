@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>You're All Set — Issac Realty Team</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>You're All Set - Issac Realty Team, Associates of Dreamhouse Realty Ltd.</title>
   <meta name="robots" content="noindex">
 
   <!-- Open Graph -->
-  <meta property="og:title"       content="Welcome to Your Calgary Home Search — Issac Realty Team">
+  <meta property="og:title"       content="Welcome to Your Calgary Home Search - Issac Realty Team, Associates of Dreamhouse Realty Ltd.">
   <meta property="og:description" content="Your Buyer Intake is complete. Rosh will be in touch within 24 hours.">
-  <meta property="og:image"        content="https://buyer-intake-form.rosh-4d0.workers.dev/icons/og-image.png">
+  <meta property="og:image"        content="https://buyer-intake-form.rosh-4d0.workers.dev/icons/og-image.png?v=2">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type"   content="image/png">
@@ -17,78 +17,132 @@
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1A1A1A">
+  <meta name="theme-color" content="#09090b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Buyer Intake">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+  /* Thank-you page — The Issac House Style (terracotta #d97047) */
+  @font-face{
+    font-family:"Fraunces";
+    src:url("assets/fraunces-latin-var.woff2") format("woff2");
+    font-weight:400 600;font-style:normal;font-display:swap;
+  }
+  :root{
+    --c-paper:#09090b; --c-ink:#f4eee2; --c-ink-soft:#d9d3c6;
+    --c-ivory:#f3efe9; --c-ivory-card:#fbf9f5; --c-charcoal:#1c1b20;
+    --c-muted-l:#857c6f; --c-hair-d:rgba(244,238,226,.12); --c-hair-l:rgba(28,27,32,.10);
+    --app-accent:#d97047; --app-accent-soft:rgba(217,112,71,.15); --app-accent-ink:#9c4526;
+    --grad-gold:linear-gradient(120deg,#dcbf86,#c9a25e 50%,#b08438);
+    --radius-md:14px; --radius-sm:11px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Helvetica,Arial,sans-serif;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --ease:cubic-bezier(.22,.61,.36,1); --max-w:620px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--c-ivory);color:var(--c-charcoal);
+    line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100dvh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+  .hero{position:relative;background:var(--c-paper);color:var(--c-ink);overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 80% at 82% 6%,var(--app-accent-soft),transparent 60%);pointer-events:none}
+  .hero::after{content:"";position:absolute;left:-18%;top:-45%;width:70%;height:95%;
+    background:radial-gradient(circle,var(--app-accent),transparent 65%);opacity:.20;filter:blur(38px);pointer-events:none}
+  .hero-inner{position:relative;max-width:var(--max-w);margin:0 auto;padding:44px 26px 34px;
+    animation:rise .6s var(--ease) both}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+    color:var(--app-accent);display:flex;align-items:center;gap:8px}
+  .eyebrow::before{content:"";width:20px;height:1px;background:var(--app-accent);opacity:.7}
+  .hero h1{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.01em;
+    font-size:clamp(32px,8vw,46px);margin:14px 0 0}
+  .hero-sub{color:var(--c-ink-soft);font-size:15px;margin-top:13px;max-width:46ch}
+
+  .work{flex:1;width:100%;max-width:var(--max-w);margin:0 auto;padding:22px 22px 30px}
+  .card{background:var(--c-ivory-card);border:1px solid var(--c-hair-l);border-radius:var(--radius-md);
+    padding:24px 22px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 26px rgba(28,27,32,.06);
+    animation:rise .6s var(--ease) both;animation-delay:.06s}
+  .card p{font-size:14.5px;color:var(--c-charcoal);line-height:1.65}
+  .card p.muted{color:var(--c-muted-l);font-size:14px}
+
+  .highlights{list-style:none;margin:20px 0;padding:0;display:flex;flex-direction:column;gap:11px}
+  .highlights li{position:relative;padding-left:30px;font-size:14.5px;color:var(--c-charcoal);line-height:1.5}
+  .highlights li::before{content:"\2713";position:absolute;left:0;top:-1px;width:20px;height:20px;
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;
+    color:var(--app-accent-ink);background:var(--app-accent-soft);border-radius:50%}
+
+  .btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;
+    background:var(--grad-gold);color:#241a07;font-weight:700;font-size:15px;border-radius:999px;
+    padding:15px;box-shadow:0 8px 22px rgba(176,132,56,.30);transition:transform .12s var(--ease)}
+  .btn-wa:active{transform:scale(.98)}
+
+  .crg{margin-top:20px;padding-top:18px;border-top:1px solid var(--c-hair-l)}
+  .crg a.dl{color:var(--app-accent-ink);font-size:14px;font-weight:700}
+  .crg .note{font-size:13px;color:var(--c-muted-l);margin-top:10px;line-height:1.6}
+  .crg .note a{color:var(--app-accent-ink);font-weight:600}
+
+  .band{position:sticky;bottom:0;background:var(--c-paper);color:var(--c-ink-soft);
+    padding:12px 22px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--c-hair-d);font-size:11px}
+  .band-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;gap:11px}
+  .band img{height:20px;width:auto;opacity:.95;filter:brightness(0) invert(1)}
+  .band b{color:var(--c-ink);font-weight:600}
+  .band a{color:var(--app-accent);font-weight:600}
+
+  @keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+  </style>
 </head>
-<body style="background: var(--black);">
+<body>
 
-  <div class="thankyou-page">
-
-    <!-- Header strip -->
-    <div style="text-align:center; margin-bottom:32px;">
-      <p style="color:var(--orange); font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin:0;">
-        Issac Realty Team
-      </p>
-      <p style="color:var(--mid-grey); font-size:11px; margin:4px 0 0;">
-        Associates of Dreamhouse Realty Ltd., Calgary
-      </p>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Buyer Intake · Complete</div>
+      <h1>You're all set,<br><span id="client-name">there</span>.</h1>
+      <p class="hero-sub">Your personalized Welcome Package - including a plain-English Consumer
+        Relationship Guide - is on its way to your inbox. Check spam if it doesn't arrive in a few minutes.</p>
     </div>
+  </header>
 
-    <div class="thankyou-card">
-      <div class="thankyou-icon">🏡</div>
-
-      <h1>You're All Set, <span id="client-name">there</span>!</h1>
-
-      <p>
-        Your Buyer Intake is complete. I've sent your personalized <strong>Welcome Package</strong>
-        — including a plain-English Consumer Relationship Guide — to your inbox.
-        Check your spam folder if it doesn't arrive within a few minutes.
-      </p>
-
-      <ul class="thankyou-highlights">
+  <main class="work">
+    <div class="card">
+      <ul class="highlights">
         <li>Your Welcome Package + CRG has been emailed to you</li>
         <li>Rosh will follow up within 24 hours</li>
         <li>Your preferences have been saved to your profile</li>
-        <li>No obligation — just a conversation</li>
+        <li>No obligation - just a conversation</li>
       </ul>
 
-      <p style="color:var(--mid-grey); font-size:14px;">
-        Want to chat right now? Tap below to reach Rosh on WhatsApp.
-      </p>
+      <p class="muted" style="margin-bottom:14px;">Want to chat right now? Tap below to reach Rosh on WhatsApp.</p>
 
-      <a class="btn-reply"
+      <a class="btn-wa"
          href="https://wa.me/18254495083?text=Hi%20Rosh%2C%20I%20just%20completed%20my%20Buyer%20Intake%20form%20and%20wanted%20to%20connect!"
          target="_blank" rel="noopener">
         &#128172; WhatsApp Rosh Now
       </a>
 
-      <p style="margin-top:20px;">
-        <a href="assets/consumer-relationships-guide-brochure.pdf"
-           target="_blank"
-           style="color:var(--orange); font-size:14px; font-weight:600; text-decoration:none;">
+      <div class="crg">
+        <a class="dl" href="assets/consumer-relationships-guide-brochure.pdf" target="_blank">
           &#128196; Download Your Consumer Relationship Guide (PDF)
         </a>
-      </p>
-      <p style="font-size:13px; color:var(--dark-grey); margin-top:10px; line-height:1.6;">
-        Please <strong>sign and date the acknowledgement</strong> of receipt of the guide and email it back to
-        <a href="mailto:rosh@issacrealty.com" style="color:var(--orange);">rosh@issacrealty.com</a>.<br>
-        This is a <strong>RECA mandatory requirement</strong> for me to represent you as your agent.
-      </p>
+        <p class="note">
+          Please <strong>sign and date the acknowledgement</strong> of receipt of the guide and email it back to
+          <a href="mailto:rosh@issacrealty.com">rosh@issacrealty.com</a>.
+          This is a <strong>RECA mandatory requirement</strong> for Rosh to represent you as your agent.
+        </p>
+      </div>
     </div>
+  </main>
 
-    <div class="thankyou-footer">
-      <p style="color:var(--mid-grey);">
-        Issac Realty Team &middot; Associates of Dreamhouse Realty Ltd. &middot; Calgary, AB<br>
-        <a href="mailto:rosh@issacrealty.com" style="color:var(--orange);">rosh@issacrealty.com</a>
-      </p>
+  <footer class="band">
+    <div class="band-inner">
+      <img src="icons/dreamhouse-logo.png" alt="Dreamhouse Realty Ltd.">
+      <span><b>Issac Realty Team</b> - Associates of Dreamhouse Realty Ltd. · Calgary ·
+        <a href="mailto:rosh@issacrealty.com">rosh@issacrealty.com</a></span>
     </div>
-
-  </div>
+  </footer>
 
   <script>
     // Personalise with name from URL param
