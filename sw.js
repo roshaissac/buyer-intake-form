@@ -3,7 +3,7 @@
    Caches core assets so the form loads fast and works offline
    ============================================================ */
 
-const CACHE = 'buyer-intake-v3';
+const CACHE = 'buyer-intake-v4';
 // index.html is now a single self-contained file (CSS + engine inlined).
 // thank-you.html still uses the shared stylesheet. Every path below must
 // exist, or cache.addAll() rejects and the SW install fails.

@@ -10,7 +10,7 @@
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Start Your Calgary Home Search - Issac Realty Team, Associates of Dreamhouse Realty Ltd.">
   <meta property="og:description" content="Complete your Buyer Intake in 5 minutes. Get your personalized Welcome Package plus a plain-English Consumer Relationship Guide from Rosh.">
-  <meta property="og:image"        content="https://buyer-intake-form.rosh-4d0.workers.dev/icons/og-image.png">
+  <meta property="og:image"        content="https://buyer-intake-form.rosh-4d0.workers.dev/icons/og-image.png?v=2">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type"   content="image/png">
@@ -272,6 +272,34 @@
   .band img{height:20px;width:auto;opacity:.95;filter:brightness(0) invert(1)}
   .band .b-txt{line-height:1.35}
   .band b{color:var(--c-ink);font-weight:600}
+
+  /* agent mode: progress dots become tappable jumps */
+  body.agent-mode .progress-step{cursor:pointer}
+  body.agent-mode .progress-step:hover .step-dot{border-color:var(--app-accent)}
+
+  /* ── Agent PIN modal ─────────────────────────────────────────────────── */
+  .pin-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+    background:rgba(9,9,11,.62);backdrop-filter:blur(4px);padding:22px}
+  .pin-overlay.open{display:flex;animation:rise .25s var(--ease) both}
+  .pin-card{background:var(--c-ivory-card);border:1px solid var(--c-hair-l);border-radius:var(--radius-md);
+    padding:26px 24px;width:100%;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .pin-card h3{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.01em;
+    color:var(--c-charcoal);margin:12px 0 6px}
+  .pin-card p{font-size:13.5px;color:var(--c-muted-l);line-height:1.5;margin-bottom:16px}
+  .pin-input{width:100%;font-size:22px;letter-spacing:.4em;text-align:center;font-family:var(--sans);
+    color:var(--c-charcoal);background:#fff;border:1px solid var(--c-hair-l);border-radius:var(--radius-sm);
+    padding:14px;min-height:52px}
+  .pin-input:focus{outline:none;border-color:var(--app-accent);box-shadow:0 0 0 3px var(--app-accent-soft)}
+  .pin-error{display:none;font-size:12.5px;color:var(--err);font-weight:600;margin-top:8px}
+  .pin-error.visible{display:block}
+  .pin-remember-row{display:flex;align-items:center;gap:9px;margin-top:14px;font-size:13px;
+    color:var(--c-charcoal);cursor:pointer;user-select:none}
+  .pin-remember-row input{width:16px;height:16px;accent-color:var(--app-accent);flex-shrink:0}
+  .pin-actions{display:flex;gap:10px;margin-top:20px}
+  .pin-actions button{flex:1;border-radius:999px;padding:13px;font-weight:700;font-size:14px;
+    cursor:pointer;min-height:48px}
+  .pin-unlock{background:var(--grad-gold);color:#241a07;border:none;box-shadow:0 8px 22px rgba(176,132,56,.30)}
+  .pin-cancel{background:#fff;border:1px solid var(--c-hair-l);color:var(--c-charcoal);font-weight:600}
 
   @keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
   </style>
@@ -897,8 +925,28 @@
     </div>
   </footer>
 
+  <!-- ===== Agent PIN modal (gates agent mode + internal notes) ===== -->
+  <div class="pin-overlay" id="pin-modal" role="dialog" aria-modal="true" aria-labelledby="pin-title">
+    <div class="pin-card">
+      <div class="eyebrow">Agent Access</div>
+      <h3 id="pin-title">Enter your PIN</h3>
+      <p>Agent-guided mode and the internal session notes are for the team only. Enter your PIN to continue.</p>
+      <input class="pin-input" id="pin-input" type="password" inputmode="numeric" pattern="[0-9]*"
+             autocomplete="off" maxlength="8" placeholder="••••" aria-label="Agent PIN">
+      <span class="pin-error" id="pin-error">Incorrect PIN - please try again.</span>
+      <label class="pin-remember-row">
+        <input type="checkbox" id="pin-remember" checked>
+        Remember on this device
+      </label>
+      <div class="pin-actions">
+        <button type="button" class="pin-cancel" id="pin-cancel">Cancel</button>
+        <button type="button" class="pin-unlock" id="pin-unlock">Unlock</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ════════════════════════════════════════════════════════════════════
-       ENGINE + BACKENDS (inlined, byte-identical to the shipped js/*.js)
+       ENGINE + BACKENDS (inlined; form.js engine byte-identical to shipped)
        ════════════════════════════════════════════════════════════════════ -->
 
   <!-- config.js -->
@@ -1018,31 +1066,104 @@
   // --- Init ----------------------------------------------------
 
   document.addEventListener('DOMContentLoaded', () => {
-    restoreMode();
     bindModeButtons();
     bindNavButtons();
     bindSubmit();
     bindInvestmentToggle();
+    bindPinModal();
+    bindProgressJump();
     autoFillSessionDate();
+    restoreMode();
     showSection(1);
     updateProgress();
   });
 
   function restoreMode() {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('agent') === 'true') {
-      setMode('agent');
-      return;
-    }
-    const saved = sessionStorage.getItem('intakeMode');
-    if (saved === 'agent') setMode('agent');
+    const wantsAgent = params.get('agent') === 'true'
+      || sessionStorage.getItem('intakeMode') === 'agent';
+    if (wantsAgent) requestAgentMode();
   }
 
   // --- Mode toggle -------------------------------------------
 
   function bindModeButtons() {
     document.querySelectorAll('.mode-btn').forEach(btn => {
-      btn.addEventListener('click', () => setMode(btn.dataset.mode));
+      btn.addEventListener('click', () => {
+        if (btn.dataset.mode === 'agent') { requestAgentMode(); }
+        else { setMode('client'); }
+      });
+    });
+  }
+
+  // --- Agent PIN gate (agent mode + internal notes are team-only) ----
+  const AGENT_PIN = '2583';
+
+  function agentUnlocked() {
+    return sessionStorage.getItem('bi_agent_ok') === '1'
+        || localStorage.getItem('bi_agent_ok') === '1';
+  }
+
+  // Enter agent mode only after the PIN gate (unless already unlocked).
+  function requestAgentMode() {
+    if (agentUnlocked()) { setMode('agent'); return; }
+    openPinModal();
+  }
+
+  function openPinModal() {
+    const m = document.getElementById('pin-modal');
+    if (!m) { setMode('agent'); return; }   // fail-open only if markup is missing
+    m.classList.add('open');
+    const input = document.getElementById('pin-input');
+    const err   = document.getElementById('pin-error');
+    if (err) err.classList.remove('visible');
+    if (input) { input.value = ''; setTimeout(() => input.focus(), 50); }
+  }
+
+  function closePinModal() {
+    const m = document.getElementById('pin-modal');
+    if (m) m.classList.remove('open');
+  }
+
+  function tryPin() {
+    const input    = document.getElementById('pin-input');
+    const err      = document.getElementById('pin-error');
+    const remember = document.getElementById('pin-remember');
+    if (input && input.value === AGENT_PIN) {
+      sessionStorage.setItem('bi_agent_ok', '1');
+      if (remember && remember.checked) localStorage.setItem('bi_agent_ok', '1');
+      closePinModal();
+      setMode('agent');
+    } else {
+      if (err) err.classList.add('visible');
+      if (input) { input.value = ''; input.focus(); }
+    }
+  }
+
+  function cancelPin() {
+    closePinModal();
+    setMode('client');   // revert the toggle to client
+  }
+
+  function bindPinModal() {
+    const unlock  = document.getElementById('pin-unlock');
+    const cancel  = document.getElementById('pin-cancel');
+    const input   = document.getElementById('pin-input');
+    const overlay = document.getElementById('pin-modal');
+    if (unlock) unlock.addEventListener('click', tryPin);
+    if (cancel) cancel.addEventListener('click', cancelPin);
+    if (input)  input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); tryPin(); } });
+    if (overlay) overlay.addEventListener('click', e => { if (e.target === overlay) cancelPin(); });
+  }
+
+  // Agent mode: let the agent jump between steps freely by tapping the progress dots.
+  function bindProgressJump() {
+    document.querySelectorAll('.progress-step').forEach(step => {
+      step.addEventListener('click', () => {
+        if (state.mode !== 'agent') return;         // free jump = agent only
+        const n = parseInt(step.dataset.step);
+        if (!isNaN(n) && document.getElementById(`section-${n}`)) showSection(n);
+      });
     });
   }
 
@@ -1080,6 +1201,9 @@
     // Update step 5 visibility in progress bar
     const step5 = document.querySelector('.progress-step[data-step="5"]');
     if (step5) step5.style.display = mode === 'agent' ? 'flex' : 'none';
+
+    // Agent mode makes the progress dots tappable (see bindProgressJump)
+    document.body.classList.toggle('agent-mode', mode === 'agent');
 
     updateProgress();
   }
@@ -1182,6 +1306,9 @@
 
   function validateSection(n) {
     clearErrors();
+    // Agent-guided sessions never force required fields — the agent captures
+    // whatever the client gives and can move back and forth freely.
+    if (state.mode === 'agent') return true;
     const errors = [];
 
     if (n === 1) {
