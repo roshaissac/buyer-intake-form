@@ -37,7 +37,7 @@ Open `js/config.js` — this is the only file you need to edit before deploying.
    - Copy the **Service ID** (e.g. `service_abc1234`)
 3. **Email Templates** → Create New Template
    - **Name:** `buyer_thankyou`
-   - **Subject:** `Welcome to the Journey, {{to_name}} — Your Calgary Home Search Starts Now 🏡`
+   - **Subject:** `Welcome to the Journey, {{to_name}} - Your Calgary Home Search Starts Now`
    - **Body (HTML):** Copy the entire contents of `templates/email-thankyou.html`
    - **To Email:** `{{to_email}}`
    - **From Name:** `Rosh Issac - Sheena & Rosh Issac Property Group`

@@ -1,8 +1,12 @@
 <!--
-  EmailJS Email Template — buyer_thankyou
-  ========================================
+  EmailJS Email Template — buyer_thankyou (Issac House Style, terracotta)
+  =======================================================================
   Paste this HTML into your EmailJS template body (HTML mode).
-  Subject line: Welcome to the Journey, {{to_name}} — Your Calgary Home Search Starts Now 🏡
+  Subject line: Welcome to the Journey, {{to_name}} - Your Calgary Home Search Starts Now
+
+  House style per SUITE_DESIGN_HANDOFF.md §4b.8 — ivory body #f3efe9, white card
+  radius 10, paper #09090b header with the C-6 terracotta accent (#d97047 /
+  accent-ink #9c4526), Georgia serif display, charcoal pill CTA, footer #faf8f3.
 
   Template variables used:
     {{to_name}}       — buyer's first name
@@ -20,117 +24,200 @@
     {{agent_phone}}   — agent phone number
 -->
 
-<div style="font-family: 'Segoe UI', Helvetica Neue, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #FFF4EC;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3efe9;padding:32px 16px;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <tr><td align="center">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0"
+           style="background:#ffffff;border-radius:10px;overflow:hidden;max-width:600px;width:100%;
+                  box-shadow:0 2px 12px rgba(0,0,0,0.08);">
 
-  <!-- Header -->
-  <div style="background: #1A1A1A; padding: 28px 32px; text-align: center;">
-    <p style="color: #FF7A1A; font-size: 13px; letter-spacing: 2px; margin: 0; text-transform: uppercase; font-weight: 700;">Sheena &amp; Rosh Issac Property Group</p>
-    <p style="color: #888; font-size: 11px; margin: 4px 0 0;">Associates of Dreamhouse Realty Ltd., Calgary</p>
-  </div>
-
-  <!-- Body -->
-  <div style="padding: 36px 32px;">
-    <h2 style="color: #1A1A1A; margin-top: 0; font-size: 22px;">Hi {{to_name}},</h2>
-    <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px;">
-      Thank you for taking the time to complete your Buyer Intake. I've got everything I need to start working for you,
-      and I'm genuinely excited to help you find the right home in Calgary.
-    </p>
-    <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px;">
-      Here's a quick summary of what you shared with me:
-    </p>
-
-    <!-- Summary table -->
-    <table style="width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px;">
-      <tr style="background: #F0F0F0;">
-        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; width: 40%;">Property Type</td>
-        <td style="padding: 10px 14px; color: #1A1A1A;">{{property_type}}</td>
-      </tr>
+      <!-- Header · paper band -->
       <tr>
-        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Budget</td>
-        <td style="padding: 10px 14px; color: #1A1A1A;">{{budget}}</td>
+        <td style="background:#09090b;padding:30px 40px;text-align:center;">
+          <p style="margin:0 0 10px;color:#d97047;font-size:11px;font-weight:600;
+                    letter-spacing:3px;text-transform:uppercase;">Your Buyer Intake Is Complete</p>
+          <p style="margin:0;color:#f4eee2;font-size:28px;font-weight:500;letter-spacing:-0.01em;
+                    font-family:Georgia,'Times New Roman',serif;">
+            Welcome to the journey.
+          </p>
+          <p style="margin:7px 0 0;color:#d9d3c6;font-size:13px;font-weight:600;">
+            Rosh Issac &nbsp;&middot;&nbsp; Realtor&reg; &nbsp;&middot;&nbsp; Sheena &amp; Rosh Issac Property Group
+          </p>
+          <p style="margin:3px 0 0;color:#a79f91;font-size:12px;letter-spacing:0.02em;">
+            Associates of Dreamhouse Realty Ltd. &nbsp;&middot;&nbsp; Calgary
+          </p>
+        </td>
       </tr>
-      <tr style="background: #F0F0F0;">
-        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Move-In Timeline</td>
-        <td style="padding: 10px 14px; color: #1A1A1A;">{{timeline}}</td>
-      </tr>
+
+      <!-- Accent bar -->
+      <tr><td style="height:4px;background:#d97047;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+      <!-- Body -->
       <tr>
-        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Neighbourhoods</td>
-        <td style="padding: 10px 14px; color: #1A1A1A;">{{neighbourhoods}}</td>
+        <td style="padding:36px 40px 0;">
+          <p style="margin:0 0 18px;font-size:17px;color:#1a1a1a;font-weight:600;">
+            Hi {{to_name}},
+          </p>
+          <p style="margin:0 0 16px;font-size:15px;color:#444;line-height:1.65;">
+            Thank you for taking the time to complete your Buyer Intake. I've got everything
+            I need to start working for you, and I'm genuinely excited to help you find the
+            right home in Calgary.
+          </p>
+          <p style="margin:0 0 16px;font-size:15px;color:#444;line-height:1.65;">
+            Here's a quick summary of what you shared with me:
+          </p>
+        </td>
       </tr>
-      <tr style="background: #F0F0F0;">
-        <td style="padding: 10px 14px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Pre-Approval</td>
-        <td style="padding: 10px 14px; color: #1A1A1A;">{{preapproval}}</td>
+
+      <!-- Summary table -->
+      <tr>
+        <td style="padding:0 40px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+                 style="border:1px solid #ece7df;border-radius:8px;overflow:hidden;font-size:14px;">
+            <tr style="background:#faf8f3;">
+              <td style="padding:10px 14px;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:1px;width:40%;">Property Type</td>
+              <td style="padding:10px 14px;color:#333;">{{property_type}}</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Budget</td>
+              <td style="padding:10px 14px;color:#333;">{{budget}}</td>
+            </tr>
+            <tr style="background:#faf8f3;">
+              <td style="padding:10px 14px;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Move-In Timeline</td>
+              <td style="padding:10px 14px;color:#333;">{{timeline}}</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Neighbourhoods</td>
+              <td style="padding:10px 14px;color:#333;">{{neighbourhoods}}</td>
+            </tr>
+            <tr style="background:#faf8f3;">
+              <td style="padding:10px 14px;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Pre-Approval</td>
+              <td style="padding:10px 14px;color:#333;">{{preapproval}}</td>
+            </tr>
+          </table>
+        </td>
       </tr>
+
+      <!-- Investment summary (only populated for multi-family / investment buyers) -->
+      <tr>
+        <td style="padding:14px 40px 0;">
+          <p style="margin:0;font-size:14px;color:#444;line-height:1.7;">{{investment_summary}}</p>
+        </td>
+      </tr>
+
+      <!-- CRG brief · paper panel with accent edge -->
+      <tr>
+        <td style="padding:28px 40px 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+                 style="background:#09090b;border-left:4px solid #d97047;border-radius:8px;">
+            <tr>
+              <td style="padding:22px 26px;">
+                <p style="margin:0 0 12px;color:#d97047;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">
+                  Your Consumer Relationship Guide - Plain English Version
+                </p>
+                <p style="margin:0 0 14px;color:#d9d3c6;font-size:14px;line-height:1.8;">
+                  As a buyer, you have the right to know exactly how I work and who I represent.
+                  The <strong style="color:#f4eee2;">Consumer Relationship Guide (CRG)</strong> is an Alberta RECA
+                  requirement - it's not a contract, it just explains your options.
+                </p>
+                <p style="margin:0 0 14px;color:#d9d3c6;font-size:14px;line-height:1.8;">
+                  You can work with me as a <em>client</em> - where I represent your interests exclusively and
+                  have full fiduciary duties (loyalty, confidentiality, best-price negotiation) - or as a
+                  <em>customer</em>, where I assist but don't formally represent you.
+                </p>
+                <p style="margin:0;color:#d9d3c6;font-size:14px;line-height:1.8;">
+                  My recommendation: let's work as <strong style="color:#d97047;">agent and client</strong>.
+                  That way I'm fully in your corner - negotiating, advising, and advocating for you at every
+                  step. <strong style="color:#d97047;">No extra cost to you</strong> - the seller pays my commission.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- Next steps -->
+      <tr>
+        <td style="padding:28px 40px 0;">
+          <p style="margin:0 0 12px;font-size:12px;color:#999;font-weight:700;
+                    text-transform:uppercase;letter-spacing:1.5px;">
+            What Happens Next
+          </p>
+          <p style="margin:0;font-size:15px;color:#444;line-height:1.7;">{{next_steps}}</p>
+        </td>
+      </tr>
+
+      <!-- Primary CTA · charcoal pill -->
+      <tr>
+        <td style="padding:32px 40px 0;" align="center">
+          <table role="presentation" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="background:#1c1b20;border-radius:999px;">
+                <a href="mailto:{{agent_email}}?subject=Re%3A%20My%20Calgary%20Home%20Search&body=Hi%20{{agent_name}}%2C%0A%0A"
+                   style="display:inline-block;padding:14px 32px;color:#ffffff;text-decoration:none;
+                          font-size:15px;font-weight:600;letter-spacing:0.3px;">
+                  Reply to {{agent_name}} Directly
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- Secondary CTA · white pill, accent border -->
+      <tr>
+        <td style="padding:14px 40px 0;" align="center">
+          <table role="presentation" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="background:#ffffff;border:2px solid #d97047;border-radius:999px;">
+                <a href="https://buyer-intake-form.rosh-4d0.workers.dev/assets/consumer-relationships-guide-brochure.pdf"
+                   target="_blank"
+                   style="display:inline-block;padding:11px 26px;color:#9c4526;text-decoration:none;
+                          font-size:14px;font-weight:600;">
+                  Download Your Consumer Relationship Guide (PDF)
+                </a>
+              </td>
+            </tr>
+          </table>
+          <p style="margin:14px 0 0;font-size:13px;color:#444;line-height:1.7;">
+            Please <strong>sign and date the acknowledgement</strong> of receipt of the guide and email it back to
+            <a href="mailto:rosh@issacrealty.com" style="color:#9c4526;font-weight:600;">rosh@issacrealty.com</a>.<br>
+            This is a <strong>RECA mandatory requirement</strong> for me to represent you as your agent.
+          </p>
+        </td>
+      </tr>
+
+      <!-- Sign-off + signature -->
+      <tr>
+        <td style="padding:28px 40px 36px;">
+          <p style="margin:0 0 16px;font-size:15px;color:#333;line-height:1.65;border-top:1px solid #ece7df;padding-top:24px;">
+            Talk soon,
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0"
+                 style="border-left:4px solid #d97047;">
+            <tr>
+              <td style="padding-left:18px;">
+                <p style="margin:0;font-size:17px;font-weight:700;color:#9c4526;">{{agent_name}}</p>
+                <p style="margin:3px 0;font-size:13px;color:#666;">Realtor&reg; &nbsp;|&nbsp; Sheena &amp; Rosh Issac Property Group</p>
+                <p style="margin:3px 0;font-size:13px;color:#666;">Associates of Dreamhouse Realty Ltd., Calgary</p>
+                <p style="margin:3px 0;font-size:13px;color:#666;">Tel: {{agent_phone}}</p>
+                <p style="margin:3px 0;font-size:13px;color:#666;">Email: {{agent_email}}</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- Footer -->
+      <tr>
+        <td style="background:#faf8f3;border-top:1px solid #ece7df;padding:20px 40px;text-align:center;">
+          <p style="margin:0;font-size:11px;color:#a79f91;line-height:1.7;">
+            <b>Sheena &amp; Rosh Issac Property Group</b> - Associates of Dreamhouse Realty Ltd., Calgary<br>
+            This email was sent because you completed a Buyer Intake form at issacrealty.com.<br>
+            &copy; 2026 Sheena &amp; Rosh Issac Property Group. All rights reserved.
+          </p>
+        </td>
+      </tr>
+
     </table>
-
-    <!-- Investment summary (only populated for multi-family / investment buyers) -->
-    <p style="color: #3A3A3A; font-size: 14px; line-height: 1.7; margin: 0 0 8px;">{{investment_summary}}</p>
-
-    <!-- CRG Brief -->
-    <div style="background: #1A1A1A; border-left: 4px solid #FF7A1A; padding: 22px 26px; margin: 28px 0; border-radius: 4px;">
-      <p style="color: #FF7A1A; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 12px; font-weight: 700;">
-        📋 Your Consumer Relationship Guide — Plain English Version
-      </p>
-      <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0 0 14px;">
-        As a buyer, you have the right to know exactly how I work and who I represent.
-        The <strong style="color: #FF7A1A;">Consumer Relationship Guide (CRG)</strong> is an Alberta RECA requirement —
-        it's not a contract, it just explains your options.
-      </p>
-      <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0 0 14px;">
-        You can work with me as a <em>client</em> — where I represent your interests exclusively and have full
-        fiduciary duties (loyalty, confidentiality, best-price negotiation) — or as a <em>customer</em>, where
-        I assist but don't formally represent you.
-      </p>
-      <p style="color: #FFF4EC; font-size: 14px; line-height: 1.8; margin: 0;">
-        My recommendation: let's work as <strong style="color: #FF7A1A;">agent and client</strong>.
-        That way I'm fully in your corner — negotiating, advising, and advocating for you at every step.
-        <strong style="color: #FF7A1A;">No extra cost to you</strong> — the seller pays my commission.
-      </p>
-    </div>
-
-    <!-- Next Steps -->
-    <h3 style="color: #FF7A1A; font-size: 17px; margin-bottom: 10px;">What Happens Next</h3>
-    <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px;">{{next_steps}}</p>
-
-    <!-- CTA Button -->
-    <div style="text-align: center; margin: 36px 0 28px;">
-      <a href="mailto:{{agent_email}}?subject=Re%3A%20My%20Calgary%20Home%20Search&body=Hi%20{{agent_name}}%2C%0A%0A"
-         style="background: #FF7A1A; color: #fff; padding: 15px 36px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; letter-spacing: 0.02em;">
-        Reply to {{agent_name}} Directly
-      </a>
-    </div>
-
-    <!-- CRG PDF Download -->
-    <div style="text-align: center; margin: 0 0 16px;">
-      <a href="https://buyer-intake-form.rosh-4d0.workers.dev/assets/consumer-relationships-guide-brochure.pdf"
-         target="_blank"
-         style="display: inline-block; background: #F0F0F0; color: #1A1A1A; border: 2px solid #FF7A1A; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">
-        📄 Download Your Consumer Relationship Guide (PDF)
-      </a>
-    </div>
-    <p style="font-size: 13px; color: #3A3A3A; text-align: center; margin: 0 0 28px; line-height: 1.7;">
-      Please <strong>sign and date the acknowledgement</strong> of receipt of the guide and email it back to
-      <a href="mailto:rosh@issacrealty.com" style="color: #FF7A1A;">rosh@issacrealty.com</a>.<br>
-      This is a <strong>RECA mandatory requirement</strong> for me to represent you as your agent.
-    </p>
-
-    <!-- Sign-off -->
-    <p style="color: #3A3A3A; line-height: 1.7; font-size: 15px; border-top: 1px solid #F0F0F0; padding-top: 24px;">
-      Talk soon,<br>
-      <strong>{{agent_name}}</strong><br>
-      <span style="color: #888; font-size: 13px;">
-        Sheena &amp; Rosh Issac Property Group · Associates of Dreamhouse Realty Ltd., Calgary<br>
-        📧 {{agent_email}} &nbsp;·&nbsp; 📱 {{agent_phone}}
-      </span>
-    </p>
-  </div>
-
-  <!-- Footer -->
-  <div style="background: #F0F0F0; padding: 16px 32px; text-align: center; border-top: 1px solid #E0E0E0;">
-    <p style="color: #888; font-size: 11px; margin: 0; line-height: 1.6;">
-      Sheena &amp; Rosh Issac Property Group · Associates of Dreamhouse Realty Ltd. · Calgary, AB<br>
-      This email was sent because you completed a Buyer Intake form at issacrealty.com
-    </p>
-  </div>
-
-</div>
+  </td></tr>
+</table>
