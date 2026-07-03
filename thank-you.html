@@ -88,9 +88,13 @@
   .band{position:sticky;bottom:0;background:var(--c-paper);color:var(--c-ink-soft);
     padding:12px 22px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--c-hair-d);font-size:11px}
   .band-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;gap:11px}
-  .band img{height:20px;width:auto;opacity:.95;filter:brightness(0) invert(1)}
+  .band .b-txt{line-height:1.35;flex:1;min-width:0}
+  .band .b-team{display:block;font-size:10.5px;line-height:1.45}
+  .band .b-fine{display:block;font-size:8.5px;color:var(--c-muted-l);margin-top:4px;line-height:1.4}
+  .band .logo{flex-shrink:0;align-self:center;background:#fff;border-radius:7px;padding:4px 7px;
+    display:flex;align-items:center;justify-content:center}
+  .band .logo img{height:auto;width:auto;max-height:34px;max-width:96px}
   .band b{color:var(--c-ink);font-weight:600}
-  .band a{color:var(--app-accent);font-weight:600}
 
   @keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
   </style>
@@ -138,9 +142,11 @@
 
   <footer class="band">
     <div class="band-inner">
-      <img src="icons/dreamhouse-logo.png" alt="Dreamhouse Realty Ltd.">
-      <span><b>Sheena &amp; Rosh Issac Property Group</b> - Associates of Dreamhouse Realty Ltd. · Calgary ·
-        <a href="mailto:rosh@issacrealty.com">rosh@issacrealty.com</a></span>
+      <div class="b-txt">
+        <span class="b-team"><b>Sheena &amp; Rosh Issac Property Group</b> - Associates of Dreamhouse Realty Ltd., Calgary</span>
+        <span class="b-fine">Estimates are for illustrative purposes only and are based on assumed variables like rates and terms. This information does not constitute financial, mortgage, legal, tax, or investment advice. Referrals to licensed professionals are available upon request.</span>
+      </div>
+      <span class="logo"><img src="icons/dreamhouse-logo.png" alt="Dreamhouse Realty Ltd."></span>
     </div>
   </footer>
 

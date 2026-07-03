@@ -91,6 +91,11 @@
   .hero .display{font-family:var(--serif);font-weight:500;line-height:1.04;letter-spacing:-.01em;
     font-size:clamp(30px,7.5vw,44px);margin:14px 0 0}
   .hero-sub{color:var(--c-ink-soft);font-size:14.5px;margin-top:13px;max-width:44ch}
+  .hero-id{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-top:16px;font-size:12.5px}
+  .hero-id .nm{font-weight:700;color:var(--c-ink);font-size:13px}
+  .hero-id .ro{color:var(--c-ink-soft);font-size:11px}
+  .hero-id a{color:var(--app-accent);text-decoration:none;font-weight:600;min-height:24px;display:inline-flex;align-items:center}
+  .hero-id a:hover{text-decoration:underline}
   .agent-badge{display:none;align-items:center;gap:6px;margin-top:16px;width:max-content;
     font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
     color:var(--app-accent);background:var(--app-accent-soft);
@@ -254,23 +259,18 @@
   .agent-footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
     gap:12px;background:var(--c-ivory-card);border:1px solid var(--c-hair-l);
     border-radius:var(--radius-md);padding:14px 18px}
-  .agent-contact-details{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13.5px}
-  .agent-contact-name{font-weight:700;color:var(--c-charcoal)}
-  .agent-realtor-tag{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--app-accent-ink);
-    background:var(--app-accent-soft);border-radius:999px;padding:2px 8px}
-  .sep{color:var(--c-hair-l)}
-  .agent-phone-link,.agent-email-link{color:var(--app-accent-ink);font-weight:600}
-  .agent-phone-link:hover,.agent-email-link:hover{text-decoration:underline}
-  @media(max-width:520px){.agent-sep-email{display:none}
-    .agent-contact-details{flex-direction:column;align-items:flex-start;gap:4px}}
 
   /* ── BAND · brokerage disclosure (sticky, RECA) ──────────────────────── */
   .band{position:sticky;bottom:0;z-index:15;background:var(--c-paper);color:var(--c-ink-soft);
     padding:11px 22px calc(11px + env(safe-area-inset-bottom,0px));
     display:flex;align-items:center;gap:11px;border-top:1px solid var(--c-hair-d);font-size:11px}
   .band-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;gap:11px;width:100%}
-  .band img{height:20px;width:auto;opacity:.95;filter:brightness(0) invert(1)}
-  .band .b-txt{line-height:1.35}
+  .band .b-txt{line-height:1.35;flex:1;min-width:0}
+  .band .b-team{display:block;font-size:10.5px;line-height:1.45}
+  .band .b-fine{display:block;font-size:8.5px;color:var(--c-muted);margin-top:4px;line-height:1.4}
+  .band .logo{flex-shrink:0;align-self:center;background:#fff;border-radius:7px;padding:4px 7px;
+    display:flex;align-items:center;justify-content:center}
+  .band .logo img{height:auto;width:auto;max-height:34px;max-width:96px}
   .band b{color:var(--c-ink);font-weight:600}
 
   /* agent mode: progress dots become tappable jumps */
@@ -314,6 +314,11 @@
       <p class="hero-sub">A few minutes now, and Rosh builds the search around exactly what you
         want - with your Consumer Relationship Guide sent straight to your inbox.</p>
       <span id="agent-badge" class="agent-badge">&#128274; Agent Mode</span>
+      <div class="hero-id">
+        <span class="nm">Rosh Issac</span><span class="ro">Realtor&reg;</span>
+        <a href="tel:+18254495083">+1 825 449 5083</a>
+        <a href="mailto:rosh@issacrealty.com">rosh@issacrealty.com</a>
+      </div>
     </div>
   </header>
 
@@ -903,14 +908,6 @@
     <!-- ===== Agent contact + Book a Call ===== -->
     <div class="agent-footer">
       <div class="agent-footer-inner">
-        <div class="agent-contact-details">
-          <span class="agent-contact-name">Rosh Issac</span>
-          <span class="agent-realtor-tag">Realtor&reg;</span>
-          <span class="sep">&middot;</span>
-          <a href="tel:+18254495083" class="agent-phone-link">+1 825&#8209;449&#8209;5083</a>
-          <span class="sep agent-sep-email">&middot;</span>
-          <a href="mailto:rosh@issacrealty.com" class="agent-email-link">rosh@issacrealty.com</a>
-        </div>
         <div id="cal-target" class="agent-cal-wrap"></div>
       </div>
     </div>
@@ -920,8 +917,11 @@
   <!-- ===== BAND · brokerage disclosure (RECA) ===== -->
   <footer class="band">
     <div class="band-inner">
-      <img src="icons/dreamhouse-logo.png" alt="Dreamhouse Realty Ltd.">
-      <span class="b-txt"><b>Sheena &amp; Rosh Issac Property Group</b> - Associates of Dreamhouse Realty Ltd., Calgary</span>
+      <div class="b-txt">
+        <span class="b-team"><b>Sheena &amp; Rosh Issac Property Group</b> - Associates of Dreamhouse Realty Ltd., Calgary</span>
+        <span class="b-fine">Estimates are for illustrative purposes only and are based on assumed variables like rates and terms. This information does not constitute financial, mortgage, legal, tax, or investment advice. Referrals to licensed professionals are available upon request.</span>
+      </div>
+      <span class="logo"><img src="icons/dreamhouse-logo.png" alt="Dreamhouse Realty Ltd."></span>
     </div>
   </footer>
 
@@ -965,7 +965,7 @@
 
     AGENT_NAME:   'Rosh',
     AGENT_EMAIL:  'rosh@issacrealty.com',
-    AGENT_PHONE:  '+1 825-449-5083',
+    AGENT_PHONE:  '+1 825 449 5083',
 
     LEAD_ALERT_EMAIL: 'info@issacrealty.com',
   };
