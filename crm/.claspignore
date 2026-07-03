@@ -1,0 +1,3 @@
+# Only the GAS backend belongs in the Apps Script project.
+.gitignore
+.claspignore
