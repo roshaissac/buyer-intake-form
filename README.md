@@ -1,4 +1,4 @@
-# Buyer Intake Form — Issac Realty Team
+# Buyer Intake Form — Sheena & Rosh Issac Property Group
 
 Branded multi-step buyer intake form with EmailJS welcome email, Formspree CRM webhook, and Zapier automation. Hosted on Cloudflare Pages, deployed from GitHub.
 
@@ -40,7 +40,7 @@ Open `js/config.js` — this is the only file you need to edit before deploying.
    - **Subject:** `Welcome to the Journey, {{to_name}} — Your Calgary Home Search Starts Now 🏡`
    - **Body (HTML):** Copy the entire contents of `templates/email-thankyou.html`
    - **To Email:** `{{to_email}}`
-   - **From Name:** `Rosh — Issac Realty Team`
+   - **From Name:** `Rosh Issac - Sheena & Rosh Issac Property Group`
    - Copy the **Template ID** (e.g. `template_xyz9876`)
 4. **Account** → **Public Key** (e.g. `user_aBcDeFgHiJ`)
 5. Add all three to `js/config.js`:
@@ -191,4 +191,4 @@ Agent mode reveals Section 5 (internal notes, CRG checkbox, next steps) and chan
 
 ---
 
-*Issac Realty Team · Associates of Dreamhouse Realty Ltd., Calgary · Built May 2026*
+*Sheena & Rosh Issac Property Group · Associates of Dreamhouse Realty Ltd., Calgary · Built May 2026*
