@@ -3,7 +3,7 @@
    Caches core assets so the form loads fast and works offline
    ============================================================ */
 
-const CACHE = 'buyer-intake-v6';
+const CACHE = 'buyer-intake-v7';
 // index.html + thank-you.html are now fully self-contained (CSS inlined).
 // Every path below must exist, or cache.addAll() rejects and the SW install fails.
 const ASSETS = [
